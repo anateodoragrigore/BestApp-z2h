@@ -1,14 +1,71 @@
-﻿
+﻿@model BestApp.Models.CreateRouteModel
+
 @{
     ViewBag.Title = "Create Route";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Create Route</h2>
+
+@Html.HiddenFor(Model=>Model.LatPlecare)
+@Html.HiddenFor(Model => Model.LatSosire)
+@Html.HiddenFor(Model => Model.LongPlecare)
+@Html.HiddenFor(Model => Model.LongSosire)
+
 <div class="row" style="margin-top:50px">
+    <div class="col-md-8">
+        @Html.Partial("~/Views/Shared/DefaultMap.cshtml")
+    </div>
 
-    @Html.Partial("~/Views/Shared/DefaultMap.cshtml")
+    <div class="col-md-4">
 
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(Model => Model.Nume)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(Model => Model.Nume,  new { @class = "form-control"})
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(Model => Model.Prenume)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(Model => Model.Prenume)
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(Model => Model.Telefon)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(Model => Model.Telefon)
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(Model => Model.Email)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(Model => Model.Email)
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(Model => Model.NrLocuri)
+                </div>
+                <div class="col-md-8">
+                    @Html.EditorFor(Model => Model.NrLocuri)
+                </div>
+            </div>
+        }
+
+    </div>
 </div>
-
-

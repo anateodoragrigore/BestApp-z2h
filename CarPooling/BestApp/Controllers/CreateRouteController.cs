@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BestApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,8 +11,9 @@ namespace BestApp.Controllers
     {
         // GET: CreateRoute
         public ActionResult Index()
-        {
-            return View();
+        { 
+            CreateRouteModel model = new CreateRouteModel();
+            return View(model);
         }
     }
 }
