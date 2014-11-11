@@ -71,10 +71,26 @@
 </div>
 
 <script type="text/javascript">
+
+    var firstClick = false;
+    var secondClick = false;
+
     $(document).ready(function () {
         var onClick = function (e) {
-            var marker = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
-            marker.addTo(map);
+            if (!firstClick) {
+                var marker = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
+                marker.addTo(map);
+                firstClick = true;
+                $('#LatPlecare').val(e.latlng.lat);
+                $('#LongPlecare').val(e.latlng.lng);
+            }
+            else if (!secondClick) {
+                var marker = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
+                marker.addTo(map);
+                secondClick = true;
+                $('#LatSosire').val(e.latlng.lat);
+                $('#LongSosire').val(e.latlng.lng);
+            }
         }
         map.on('click', onClick);
     });
