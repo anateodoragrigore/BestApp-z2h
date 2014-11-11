@@ -58,11 +58,11 @@ namespace BestApp
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "889066582664-ef02lnc84ji7sj27u7fnc3t97hgo6kj1.apps.googleusercontent.com",
+                ClientSecret = "AR671hgCEGU-ktDUtoGBvS5G"
+            });
         }
     }
 }
