@@ -22,8 +22,13 @@ namespace BestApp.Controllers
         public ActionResult Index(CreateRouteModel model)
         {
             Console.WriteLine(model.Nume);
+            var routePosted = new List<object>();
+            routePosted.Add(new { Nume = model.Nume, Prenume = model.Prenume, Telefon = model.Telefon, Email = model.Email, 
+                        nrLocuri = model.NrLocuri, LatPlecare = model.LatPlecare,  longPlecare = model.LongPlecare,
+                        LatSosire = model.LatSosire, LongSosire = model.LongSosire});
+           
             //To do : save Route to database
-            return Content(model.Nume);//RedirectToAction("Index", "Home");
+            return Json(routePosted, JsonRequestBehavior.AllowGet); ;// Content(model.Nume);//RedirectToAction("Index", "Home");
            
       }
     }

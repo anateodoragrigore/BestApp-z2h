@@ -6,9 +6,48 @@
 
 <h2>Search Route</h2>
 <div class="row" style="margin-top:50px">
-
-    @Html.Partial("~/Views/Shared/DefaultMap.cshtml")
-
+    <div class="col-md-8">
+        @Html.Partial("~/Views/Shared/DefaultMap.cshtml")
+    </div>
 </div>
+<script type="text/javascript">
+
+    var firstClick = false;
+    var secondClick = false;
+    var markerPlecare;
+    var markerSosire;
+
+    $(document).ready(function () {
+        var onDragendPlecare = function (e) {
+            $('#LatPlecare').val(markerPlecare._latlng.lat);
+            $('#LongPlecare').val(markerPlecare._latlng.lng);
+        }
+        var onDragendSosire = function (e) {
+            $('#LatSosire').val(markerSosire._latlng.lat);
+            $('#LongSosire').val(markerSosire._latlng.lng);
+        }
+
+        var onClick = function (e) {
+            if (!firstClick) {
+                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
+                markerPlecare.addTo(map);
+                markerPlecare.on('dragend', onDragendPlecare);
+                firstClick = true;
+                $('#LatPlecare').val(e.latlng.lat);
+                $('#LongPlecare').val(e.latlng.lng);
+            }
+            else if (!secondClick) {
+                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
+                markerSosire.addTo(map);
+                markerSosire.on('dragend', onDragendSosire);
+                secondClick = true;
+                $('#LatSosire').val(e.latlng.lat);
+                $('#LongSosire').val(e.latlng.lng);
+            }
+        }
+        map.on('click', onClick);
+    });
+
+</script>
 
 

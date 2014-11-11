@@ -15,7 +15,7 @@ namespace BestApp.Models
         public string Prenume { get; set; }
 
         [Required(ErrorMessage = "Campul Telefon este obligatoriu")]
-        [RegularExpression(@"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}", ErrorMessage = "Numar de telefon invalid")]
+        [RegularExpression(@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}", ErrorMessage = "Numar de telefon invalid")]
         public string Telefon { get; set; }
 
         [Required(ErrorMessage = "Adresa de e-mail este obligatorie")]
