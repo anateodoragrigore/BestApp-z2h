@@ -4,10 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My Best App</title>
-    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/leaflet.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/leaflet-0.7.3.js"></script>
+
+    @RenderSection("scripts", required: false)
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/leaflet.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -38,9 +42,5 @@
             <p>&copy; @DateTime.Now.Year - Car Pooling by Zero To Hero </p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

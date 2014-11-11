@@ -2,10 +2,9 @@
 <div id="map" style="height: 450px;"></div>
 
 <script>
-    var map = L.map('map').setView([44.5, 26], 10);
-    var layer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
-    layer.addTo(map);
-
-    var marker = L.marker([44.56, 26], { draggable: true });
-    marker.addTo(map);
+    $(document).ready(function () {
+        map = L.map('map').setView([44.5, 26], 10);
+        var layer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+        layer.addTo(map);
+    });
 </script>

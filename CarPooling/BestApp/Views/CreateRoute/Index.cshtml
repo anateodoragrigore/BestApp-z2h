@@ -69,3 +69,14 @@
 
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var onClick = function (e) {
+            var marker = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
+            marker.addTo(map);
+        }
+        map.on('click', onClick);
+    });
+
+</script>
