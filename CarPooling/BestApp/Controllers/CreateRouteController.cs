@@ -15,5 +15,14 @@ namespace BestApp.Controllers
             CreateRouteModel model = new CreateRouteModel();
             return View(model);
         }
+
+        // POST: CreateRoute
+        [HttpPost]
+        public ActionResult Index(CreateRouteModel model)
+        {
+            //To do : validate model (daca toate capurile sunt completate> nume telefon...etc)
+            //To do : save Route to database
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
