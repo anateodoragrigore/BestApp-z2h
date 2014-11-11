@@ -31,5 +31,8 @@ Descrierea aplicatiei:
                                             -telefon
                                             -ora plecare
             -pentru trimiterea datelor din formular catre baza de date se va apasa butonul CAUTARE TRASEU
+
+*inspiratie pt LogIn:
+	http://www.asp.net/mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on
             
 END.
