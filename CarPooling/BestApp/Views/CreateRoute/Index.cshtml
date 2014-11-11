@@ -74,19 +74,32 @@
 
     var firstClick = false;
     var secondClick = false;
+    var markerPlecare;
+    var markerSosire;
 
     $(document).ready(function () {
+        var onDragendPlecare = function (e) {
+            $('#LatPlecare').val(markerPlecare._latlng.lat);
+            $('#LongPlecare').val(markerPlecare._latlng.lng);
+        }
+        var onDragendSosire = function (e) {
+            $('#LatSosire').val(markerSosire._latlng.lat);
+            $('#LongSosire').val(markerSosire._latlng.lng);
+        }
+
         var onClick = function (e) {
             if (!firstClick) {
-                var marker = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
-                marker.addTo(map);
+                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
+                markerPlecare.addTo(map);
+                markerPlecare.on('dragend', onDragendPlecare);
                 firstClick = true;
                 $('#LatPlecare').val(e.latlng.lat);
                 $('#LongPlecare').val(e.latlng.lng);
             }
             else if (!secondClick) {
-                var marker = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
-                marker.addTo(map);
+                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
+                markerSosire.addTo(map);
+                markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
                 $('#LatSosire').val(e.latlng.lat);
                 $('#LongSosire').val(e.latlng.lng);

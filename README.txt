@@ -35,4 +35,10 @@ Descrierea aplicatiei:
 *inspiratie pt LogIn:
 	http://www.asp.net/mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on
             
-END.
+Task-uri: 
+	-de modificat in CreateRoute in Index astfel incat sa se actualizeze in model daca se face dragg la markere.De folosit evenimentele de pe markere(dragend)
+	-de pus iconite pt casa si birouri
+	-de adaugat buton de submit(pt formul din CreateRoute)
+	-de facut un ActionMethod corespunzator pt post-ul datelor catre server.
+	-salvarea datelor de pe server in baza de date
+	
