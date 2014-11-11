@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace BestApp.Controllers
 {
     public class CreateRouteController : Controller
@@ -20,9 +21,10 @@ namespace BestApp.Controllers
         [HttpPost]
         public ActionResult Index(CreateRouteModel model)
         {
-            //To do : validate model (daca toate capurile sunt completate> nume telefon...etc)
+            Console.WriteLine(model.Nume);
             //To do : save Route to database
-            return RedirectToAction("Index", "Home");
-        }
+            return Content(model.Nume);//RedirectToAction("Index", "Home");
+           
+      }
     }
 }
