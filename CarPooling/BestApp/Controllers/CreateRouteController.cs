@@ -26,15 +26,12 @@ namespace BestApp.Controllers
             //validare
             if (!ModelState.IsValid)
                 return View();
-
             else
             {
 
                 //save Route to database
                 using (var context = new BestAppContext())
                 {
-
-
                     var newtrack = new Track()
                     {
                         CarSeats = model.FreeSeats,
@@ -56,18 +53,9 @@ namespace BestApp.Controllers
                     context.TrackSet.Add(newtrack);
                     context.SaveChanges();
                 }
-
             }
 
-            //Console.WriteLine(model.Name);
-            //var routePosted = new List<object>();
-            //routePosted.Add(new { Nume = model.Name, Telefon = model.PhoneNumber, Email = model.Email, 
-            //            nrLocuri = model.FreeSeats, LatPlecare = model.startLatitude,  longPlecare = model.startLongitude,
-            //            LatSosire = model.stopLatitude, LongSosire = model.stopLongitude});
-
-
-
-
+          
             return View();
 
         }

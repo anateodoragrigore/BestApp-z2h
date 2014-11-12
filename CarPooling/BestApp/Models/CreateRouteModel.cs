@@ -22,10 +22,14 @@ namespace BestApp.Models
         [Range(1, 5, ErrorMessage = "Seat numbers must be between 1 and 5")]
         [Display(Name = "Free Seats")]
         public int FreeSeats { get; set; }
-        
-        public double startLatitude { get; set; }
-        public double startLongitude { get; set; }
-        public double stopLatitude { get; set; }
-        public double stopLongitude { get; set; }
+
+
+        [Required(ErrorMessage = "Set source point on the map!")]
+        public string startLatitude { get; set; }
+        public string startLongitude { get; set; }
+
+        [Required(ErrorMessage = "Set destination point on the map!")]
+        public string stopLatitude { get; set; }
+        public string stopLongitude { get; set; }
     }
 }
