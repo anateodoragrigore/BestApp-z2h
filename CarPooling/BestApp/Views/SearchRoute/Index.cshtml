@@ -94,6 +94,11 @@
         map.on('click', onClick);
     });
 
+    $.get("/api/Track")
+        .done(function () {
+            alert("merge");
+        });
+
 </script>
 
 
