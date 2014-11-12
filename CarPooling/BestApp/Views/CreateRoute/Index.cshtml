@@ -89,7 +89,7 @@
         iconUrl: 'Content/images/sedan.png',
 
         iconSize: [30, 38], // size of the icon
-        iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+        iconAnchor: [22, 30], // point of the icon which will correspond to marker's location
         popupAnchor: [-3, -90] // point from which the popup should open relative to the iconAnchor
     });
 
@@ -97,7 +97,7 @@
         iconUrl: 'Content/images/buildings10.png',
 
         iconSize: [38, 57], // size of the icon
-        iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+        iconAnchor: [22, 30], // point of the icon which will correspond to marker's location
         popupAnchor: [-3, -90] // point from which the popup should open relative to the iconAnchor
     });
 
@@ -127,8 +127,8 @@
                 markerSosire.addTo(map).bindPopup("Punct sosire");
                 markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
-                $('#stopLatitude').val(e.latlng.lat);
-                $('#stopLongitude').val(e.latlng.lng);
+                $('#StopLatitude').val(e.latlng.lat);
+                $('#StopLongitude').val(e.latlng.lng);
             }
         }
         map.on('click', onClick);
