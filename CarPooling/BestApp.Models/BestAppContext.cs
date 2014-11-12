@@ -1,4 +1,5 @@
 ﻿using BestApp.Entities;
+using BestApp.Models.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,7 +23,10 @@ namespace BestApp.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Entity<UserTrack>().HasKey(p => p.Id);
+            modelBuilder.Conventions.Add(new ForeignKeyNamingConvention());
+
+
+            modelBuilder.Configurations.Add(new UserTrackConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

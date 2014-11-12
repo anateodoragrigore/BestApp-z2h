@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BestAppContext.cs" />
+    <Compile Include="Configuration\ForeignKeyNamingConvention.cs" />
     <Compile Include="Configuration\UserTrackConfiguration.cs" />
     <Compile Include="Migrations\201411120846125_initialMigration.cs" />
     <Compile Include="Migrations\201411120846125_initialMigration.Designer.cs">
@@ -58,6 +59,10 @@
     <Compile Include="Migrations\201411120929520_secondMigration.cs" />
     <Compile Include="Migrations\201411120929520_secondMigration.Designer.cs">
       <DependentUpon>201411120929520_secondMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411121016427_3Migration.cs" />
+    <Compile Include="Migrations\201411121016427_3Migration.Designer.cs">
+      <DependentUpon>201411121016427_3Migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201411120929520_secondMigration.resx">
       <DependentUpon>201411120929520_secondMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411121016427_3Migration.resx">
+      <DependentUpon>201411121016427_3Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
