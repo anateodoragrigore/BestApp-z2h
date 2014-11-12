@@ -17,10 +17,10 @@
 
         @using (Html.BeginForm())
         {
-            @Html.TextBoxFor(Model => Model.startLatitude, new { @class = "super-hidden" })
-            @Html.TextBoxFor(Model => Model.startLongitude, new { @class = "super-hidden" })
-            @Html.TextBoxFor(Model => Model.stopLatitude, new { @class = "super-hidden" })
-            @Html.TextBoxFor(Model => Model.stopLongitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StartLatitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StartLongitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StopLatitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StopLongitude, new { @class = "super-hidden" })
 
 
             <div class="row" style="margin-top:50px">
@@ -51,6 +51,15 @@
                 </div>
             </div>
 
+             <div class="row" style="margin-top:50px">
+                <div class="col-md-6">
+                    @Html.LabelFor(Model => Model.StartHour)
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(Model => Model.StartHour)
+                </div>
+            </div>
+            
             <div class="row" style="margin-top:50px">
                 <div class="col-md-6">
                     @Html.LabelFor(Model => Model.FreeSeats)
@@ -79,13 +88,13 @@
 
     $(document).ready(function () {
         var onDragendPlecare = function (e) {
-            $('#startLatitude').val(markerPlecare._latlng.lat);
-            $('#startLongitude').val(markerPlecare._latlng.lng);
+            $('#StartLatitude').val(markerPlecare._latlng.lat);
+            $('#StartLongitude').val(markerPlecare._latlng.lng);
 
         }
         var onDragendSosire = function (e) {
-            $('#stopLatitude').val(markerSosire._latlng.lat);
-            $('#stopLongitude').val(markerSosire._latlng.lng);
+            $('#StopLatitude').val(markerSosire._latlng.lat);
+            $('#StopLongitude').val(markerSosire._latlng.lng);
         }
 
         var onClick = function (e) {
@@ -94,8 +103,8 @@
                 markerPlecare.addTo(map);
                 markerPlecare.on('dragend', onDragendPlecare);
                 firstClick = true;
-                $('#startLatitude').val(e.latlng.lat);
-                $('#startLongitude').val(e.latlng.lng);
+                $('#StartLatitude').val(e.latlng.lat);
+                $('#StartLongitude').val(e.latlng.lng);
 
             }
             else if (!secondClick) {

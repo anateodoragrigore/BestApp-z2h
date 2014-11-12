@@ -9,6 +9,6 @@ namespace BestApp.Entities
     public  enum EnumUserType
     {
         Driver = 1,
-        Passenger =2
+        Passenger = 2
     }
 }

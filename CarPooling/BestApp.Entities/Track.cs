@@ -14,7 +14,7 @@ namespace BestApp.Entities
     {
 
         public TimeSpan StartHour { get; set; }
-        public  DbGeography Start { get; set; }
+        public DbGeography Start { get; set; }
         public DbGeography Stop { get; set; }
         public int CarSeats{ get; set; }
         public EnumUserType UserType { get; set; }
