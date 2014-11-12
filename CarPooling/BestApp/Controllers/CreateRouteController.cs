@@ -28,6 +28,12 @@ namespace BestApp.Controllers
                         LatSosire = model.stopLatitude, LongSosire = model.stopLongitude});
            
             //To do : save Route to database
+            //using (var context = new BestAppContext())
+            //{
+            //    context..Add(new )
+            //}
+
+
             return Json(routePosted, JsonRequestBehavior.AllowGet); ;// Content(model.Nume);//RedirectToAction("Index", "Home");
            
       }
