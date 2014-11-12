@@ -17,6 +17,22 @@
     var markerPlecare;
     var markerSosire;
 
+    var manIcon = L.icon({
+        iconUrl: 'Content/images/man.png',
+
+        iconSize: [30, 30], // size of the icon
+        iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+        popupAnchor: [-3, -90] // point from which the popup should open relative to the iconAnchor
+    });
+
+    var buildingIcon = L.icon({
+        iconUrl: 'Content/images/buildings10.png',
+
+        iconSize: [38, 57], // size of the icon
+        iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+        popupAnchor: [-3, -90] // point from which the popup should open relative to the iconAnchor
+    });
+
     $(document).ready(function () {
         var onDragendPlecare = function (e) {
             $('#LatPlecare').val(markerPlecare._latlng.lat);
@@ -29,16 +45,16 @@
 
         var onClick = function (e) {
             if (!firstClick) {
-                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
-                markerPlecare.addTo(map);
+                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true ,icon:manIcon});
+                markerPlecare.addTo(map).bindPopup("Ia-ma, nene!");
                 markerPlecare.on('dragend', onDragendPlecare);
                 firstClick = true;
                 $('#LatPlecare').val(e.latlng.lat);
                 $('#LongPlecare').val(e.latlng.lng);
             }
             else if (!secondClick) {
-                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true });
-                markerSosire.addTo(map);
+                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon:buildingIcon });
+                markerSosire.addTo(map).bindPopup("Punct sosire");
                 markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
                 $('#LatSosire').val(e.latlng.lat);

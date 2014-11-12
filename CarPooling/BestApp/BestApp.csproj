@@ -190,11 +190,15 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\buildings10.png" />
+    <Content Include="Content\images\home148.png" />
+    <Content Include="Content\images\house4.png" />
     <Content Include="Content\images\layers-2x.png" />
     <Content Include="Content\images\layers.png" />
     <Content Include="Content\images\marker-icon-2x.png" />
     <Content Include="Content\images\marker-icon.png" />
     <Content Include="Content\images\marker-shadow.png" />
+    <Content Include="Content\images\sedan.png" />
     <Content Include="Content\leaflet.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -203,11 +207,15 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\images\buildings10.png" />
+    <Content Include="Scripts\images\home148.png" />
+    <Content Include="Scripts\images\house4.png" />
     <Content Include="Scripts\images\layers-2x.png" />
     <Content Include="Scripts\images\layers.png" />
     <Content Include="Scripts\images\marker-icon-2x.png" />
     <Content Include="Scripts\images\marker-icon.png" />
     <Content Include="Scripts\images\marker-shadow.png" />
+    <Content Include="Scripts\images\sedan.png" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
