@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace BestApp.Models.Configuration
 {
-    public class UserTrackConfiguration: EntityTypeConfiguration<UserTrack>
+    public class UserTrackConfiguration : EntityTypeConfiguration<UserTrack>
     {
         public UserTrackConfiguration()
         {
             HasKey(p => p.Id);
+
         }
     }
 }
