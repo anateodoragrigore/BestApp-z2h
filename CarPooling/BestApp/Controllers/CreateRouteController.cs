@@ -21,11 +21,11 @@ namespace BestApp.Controllers
         [HttpPost]
         public ActionResult Index(CreateRouteModel model)
         {
-            Console.WriteLine(model.Nume);
+            Console.WriteLine(model.Name);
             var routePosted = new List<object>();
-            routePosted.Add(new { Nume = model.Nume, Prenume = model.Prenume, Telefon = model.Telefon, Email = model.Email, 
-                        nrLocuri = model.NrLocuri, LatPlecare = model.LatPlecare,  longPlecare = model.LongPlecare,
-                        LatSosire = model.LatSosire, LongSosire = model.LongSosire});
+            routePosted.Add(new { Nume = model.Name, Telefon = model.PhoneNumber, Email = model.Email, 
+                        nrLocuri = model.NrLocuri, LatPlecare = model.startLatitude,  longPlecare = model.startLongitude,
+                        LatSosire = model.stopLatitude, LongSosire = model.stopLongitude});
            
             //To do : save Route to database
             return Json(routePosted, JsonRequestBehavior.AllowGet); ;// Content(model.Nume);//RedirectToAction("Index", "Home");
