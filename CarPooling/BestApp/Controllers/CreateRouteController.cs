@@ -1,6 +1,8 @@
-﻿using BestApp.Models;
+﻿using BestApp.Entities;
+using BestApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,7 +14,7 @@ namespace BestApp.Controllers
     {
         // GET: CreateRoute
         public ActionResult Index()
-        { 
+        {
             CreateRouteModel model = new CreateRouteModel();
             return View(model);
         }
@@ -21,21 +23,53 @@ namespace BestApp.Controllers
         [HttpPost]
         public ActionResult Index(CreateRouteModel model)
         {
-            Console.WriteLine(model.Name);
-            var routePosted = new List<object>();
-            routePosted.Add(new { Nume = model.Name, Telefon = model.PhoneNumber, Email = model.Email, 
-                        nrLocuri = model.FreeSeats, LatPlecare = model.startLatitude,  longPlecare = model.startLongitude,
-                        LatSosire = model.stopLatitude, LongSosire = model.stopLongitude});
-           
-            //To do : save Route to database
-            //using (var context = new BestAppContext())
-            //{
-            //    context..Add(new )
-            //}
+            //validare
+            if (!ModelState.IsValid)
+                return View();
+
+            else
+            {
+
+                //save Route to database
+                using (var context = new BestAppContext())
+                {
 
 
-            return Json(routePosted, JsonRequestBehavior.AllowGet); ;// Content(model.Nume);//RedirectToAction("Index", "Home");
-           
-      }
+                    var newtrack = new Track()
+                    {
+                        CarSeats = model.FreeSeats,
+                        Start = DbGeography.PointFromText(
+                            string.Format("POINT({0} {1})",
+                            model.startLatitude,
+                            model.startLongitude)
+                            , 4326),
+                        Stop = DbGeography.PointFromText(
+                            string.Format("POINT({0} {1})",
+                            model.stopLatitude,
+                            model.stopLongitude)
+                            , 4326),
+                        StartHour = TimeSpan.FromHours(8),
+                        UserType = EnumUserType.Driver
+
+                    };
+
+                    context.TrackSet.Add(newtrack);
+                    context.SaveChanges();
+                }
+
+            }
+
+            //Console.WriteLine(model.Name);
+            //var routePosted = new List<object>();
+            //routePosted.Add(new { Nume = model.Name, Telefon = model.PhoneNumber, Email = model.Email, 
+            //            nrLocuri = model.FreeSeats, LatPlecare = model.startLatitude,  longPlecare = model.startLongitude,
+            //            LatSosire = model.stopLatitude, LongSosire = model.stopLongitude});
+
+
+
+
+            return View();
+
+        }
     }
 }

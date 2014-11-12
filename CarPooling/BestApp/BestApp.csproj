@@ -274,6 +274,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BestApp.Entities\BestApp.Entities.csproj">
+      <Project>{4bffeed4-d950-4356-bf53-4152a28a02a7}</Project>
+      <Name>BestApp.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BestApp.Models\BestApp.Models.csproj">
       <Project>{5825bba4-2181-4296-81b2-2c95c3b8b509}</Project>
       <Name>BestApp.Models</Name>
