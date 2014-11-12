@@ -25,7 +25,12 @@ namespace BestApp.Controllers
         {
             //validare
             if (!ModelState.IsValid)
+            {
+                Console.WriteLine(model.StartLatitude);
+                Console.WriteLine(model.StopLatitude);
+
                 return View();
+            }
             else
             {
                 //save Route to database
