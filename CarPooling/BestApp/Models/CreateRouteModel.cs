@@ -16,11 +16,12 @@ namespace BestApp.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
-        [Required(ErrorMessage = "Ee-mail must be filled out")]
+        [Required(ErrorMessage = "E-mail must be filled out")]
         public string Email { get; set; }
         
         [Range(1, 5, ErrorMessage = "Seat numbers must be between 1 and 5")]
-        public int NrLocuri { get; set; }
+        [Display(Name = "Free Seats")]
+        public int FreeSeats { get; set; }
         
         public double startLatitude { get; set; }
         public double startLongitude { get; set; }

@@ -24,7 +24,7 @@ namespace BestApp.Controllers
             Console.WriteLine(model.Name);
             var routePosted = new List<object>();
             routePosted.Add(new { Nume = model.Name, Telefon = model.PhoneNumber, Email = model.Email, 
-                        nrLocuri = model.NrLocuri, LatPlecare = model.startLatitude,  longPlecare = model.startLongitude,
+                        nrLocuri = model.FreeSeats, LatPlecare = model.startLatitude,  longPlecare = model.startLongitude,
                         LatSosire = model.stopLatitude, LongSosire = model.stopLongitude});
            
             //To do : save Route to database
