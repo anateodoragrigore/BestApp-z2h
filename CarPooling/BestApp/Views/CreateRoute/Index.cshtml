@@ -127,8 +127,8 @@
                 markerSosire.addTo(map).bindPopup("Punct sosire");
                 markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
-                $('#stopLatitude').val(e.latlng.lat);
-                $('#stopLongitude').val(e.latlng.lng);
+                $('#StopLatitude').val(e.latlng.lat);
+                $('#StopLongitude').val(e.latlng.lng);
             }
         }
         map.on('click', onClick);
