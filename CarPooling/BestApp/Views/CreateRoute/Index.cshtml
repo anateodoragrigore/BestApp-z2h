@@ -21,46 +21,46 @@
 
         @using (Html.BeginForm())
         {
-             @Html.ValidationSummary(){
-            <div class="row">
-                <div class="col-md-6">
-                    @Html.LabelFor(Model => Model.Name)
-                </div>
-                <div class="col-md-6">
-                    @Html.EditorFor(Model => Model.Name)
-                    
-                </div>
-            </div>
             
-            <div class="row">
-                <div class="col-md-6">
-                    @Html.LabelFor(Model => Model.PhoneNumber)
-                </div>
-                <div class="col-md-6">
-                    @Html.EditorFor(Model => Model.PhoneNumber)
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-6">
-                    @Html.LabelFor(Model => Model.Email)
-                </div>
-                <div class="col-md-6">
-                    @Html.EditorFor(Model => Model.Email)
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-6">
-                    @Html.LabelFor(Model => Model.NrLocuri)
-                </div>
-                <div class="col-md-6">
-                    @Html.EditorFor(Model => Model.NrLocuri)
-                    <br /><br />
-                    <input type="submit" value="Create Route!" /> 
-                </div>
-            </div>
-             }
+                                        <div class="row" style="margin-top:50px">
+                                            <div class="col-md-6">
+                                                @Html.LabelFor(Model => Model.Name)
+                                            </div>
+                                            <div class="col-md-6">
+                                                @Html.EditorFor(Model => Model.Name)
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top:50px">
+                                            <div class="col-md-6">
+                                                @Html.LabelFor(Model => Model.PhoneNumber)
+                                            </div>
+                                            <div class="col-md-6">
+                                                @Html.EditorFor(Model => Model.PhoneNumber)
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top:50px">
+                                            <div class="col-md-6">
+                                                @Html.LabelFor(Model => Model.Email)
+                                            </div>
+                                            <div class="col-md-6">
+                                                @Html.EditorFor(Model => Model.Email)
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top:50px">
+                                            <div class="col-md-6">
+                                                @Html.LabelFor(Model => Model.FreeSeats)
+                                            </div>
+                                            <div class="col-md-6">
+                                                @Html.EditorFor(Model => Model.FreeSeats)
+                                                <br /><br />
+                                                <input type="submit" value="Create Route!" />
+                                            </div>
+                                        </div>
+                                  @Html.ValidationSummary(){ }
         }
 
     </div>
