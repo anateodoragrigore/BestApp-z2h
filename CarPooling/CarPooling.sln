@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestApp", "BestApp\BestApp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestApp.Tests", "BestApp.Tests\BestApp.Tests.csproj", "{4DA124A4-7C2F-4048-8804-6FE676D4F013}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestApp.Models", "BestApp.Models\BestApp.Models.csproj", "{5825BBA4-2181-4296-81B2-2C95C3B8B509}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestApp.Entities", "BestApp.Entities\BestApp.Entities.csproj", "{4BFFEED4-D950-4356-BF53-4152A28A02A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{4DA124A4-7C2F-4048-8804-6FE676D4F013}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DA124A4-7C2F-4048-8804-6FE676D4F013}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DA124A4-7C2F-4048-8804-6FE676D4F013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5825BBA4-2181-4296-81B2-2C95C3B8B509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5825BBA4-2181-4296-81B2-2C95C3B8B509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5825BBA4-2181-4296-81B2-2C95C3B8B509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5825BBA4-2181-4296-81B2-2C95C3B8B509}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BFFEED4-D950-4356-BF53-4152A28A02A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BFFEED4-D950-4356-BF53-4152A28A02A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BFFEED4-D950-4356-BF53-4152A28A02A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BFFEED4-D950-4356-BF53-4152A28A02A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
