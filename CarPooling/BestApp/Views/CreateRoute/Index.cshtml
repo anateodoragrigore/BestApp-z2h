@@ -7,10 +7,6 @@
 
 <h2>Create Route</h2>
 
-@Html.HiddenFor(Model => Model.startLatitude)
-@Html.HiddenFor(Model => Model.startLongitude)
-@Html.HiddenFor(Model => Model.stopLatitude)
-@Html.HiddenFor(Model => Model.stopLongitude)
 
 <div class="row" style="margin-top:50px">
     <div class="col-md-8">
@@ -21,46 +17,60 @@
 
         @using (Html.BeginForm())
         {
+            @Html.TextBoxFor(Model => Model.StartLatitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StartLongitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StopLatitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StopLongitude, new { @class = "super-hidden" })
+
+
+            <div class="row" style="margin-top:50px">
+                <div class="col-md-6">
+                    @Html.LabelFor(Model => Model.Name)
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(Model => Model.Name)
+
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:50px">
+                <div class="col-md-6">
+                    @Html.LabelFor(Model => Model.PhoneNumber)
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(Model => Model.PhoneNumber)
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:50px">
+                <div class="col-md-6">
+                    @Html.LabelFor(Model => Model.Email)
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(Model => Model.Email)
+                </div>
+            </div>
+
+             <div class="row" style="margin-top:50px">
+                <div class="col-md-6">
+                    @Html.LabelFor(Model => Model.StartHour)
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(Model => Model.StartHour)
+                </div>
+            </div>
             
-                                        <div class="row" style="margin-top:50px">
-                                            <div class="col-md-6">
-                                                @Html.LabelFor(Model => Model.Name)
-                                            </div>
-                                            <div class="col-md-6">
-                                                @Html.EditorFor(Model => Model.Name)
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row" style="margin-top:50px">
-                                            <div class="col-md-6">
-                                                @Html.LabelFor(Model => Model.PhoneNumber)
-                                            </div>
-                                            <div class="col-md-6">
-                                                @Html.EditorFor(Model => Model.PhoneNumber)
-                                            </div>
-                                        </div>
-
-                                        <div class="row" style="margin-top:50px">
-                                            <div class="col-md-6">
-                                                @Html.LabelFor(Model => Model.Email)
-                                            </div>
-                                            <div class="col-md-6">
-                                                @Html.EditorFor(Model => Model.Email)
-                                            </div>
-                                        </div>
-
-                                        <div class="row" style="margin-top:50px">
-                                            <div class="col-md-6">
-                                                @Html.LabelFor(Model => Model.FreeSeats)
-                                            </div>
-                                            <div class="col-md-6">
-                                                @Html.EditorFor(Model => Model.FreeSeats)
-                                                <br /><br />
-                                                <input type="submit" value="Create Route!" />
-                                            </div>
-                                        </div>
-                                  @Html.ValidationSummary(){ }
+            <div class="row" style="margin-top:50px">
+                <div class="col-md-6">
+                    @Html.LabelFor(Model => Model.FreeSeats)
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(Model => Model.FreeSeats)
+                    <br /><br />
+                    <input type="submit" value="Create Route!" />
+                </div>
+            </div>
+            @Html.ValidationSummary(){ }
         }
 
     </div>
@@ -93,12 +103,13 @@
 
     $(document).ready(function () {
         var onDragendPlecare = function (e) {
-            $('#LatPlecare').val(markerPlecare._latlng.lat);
-            $('#LongPlecare').val(markerPlecare._latlng.lng);
+            $('#StartLatitude').val(markerPlecare._latlng.lat);
+            $('#StartLongitude').val(markerPlecare._latlng.lng);
+
         }
         var onDragendSosire = function (e) {
-            $('#LatSosire').val(markerSosire._latlng.lat);
-            $('#LongSosire').val(markerSosire._latlng.lng);
+            $('#StopLatitude').val(markerSosire._latlng.lat);
+            $('#StopLongitude').val(markerSosire._latlng.lng);
         }
 
         var onClick = function (e) {
@@ -107,19 +118,21 @@
                 markerPlecare.addTo(map).bindPopup("Punct plecare");
                 markerPlecare.on('dragend', onDragendPlecare);
                 firstClick = true;
-                $('#LatPlecare').val(e.latlng.lat);
-                $('#LongPlecare').val(e.latlng.lng);
+                $('#StartLatitude').val(e.latlng.lat);
+                $('#StartLongitude').val(e.latlng.lng);
+
             }
             else if (!secondClick) {
                 markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: buildingIcon });
                 markerSosire.addTo(map).bindPopup("Punct sosire");
                 markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
-                $('#LatSosire').val(e.latlng.lat);
-                $('#LongSosire').val(e.latlng.lng);
+                $('#stopLatitude').val(e.latlng.lat);
+                $('#stopLongitude').val(e.latlng.lng);
             }
         }
         map.on('click', onClick);
+
     });
 
 </script>

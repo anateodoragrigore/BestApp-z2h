@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BestApp.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -22,10 +23,19 @@ namespace BestApp.Models
         [Range(1, 5, ErrorMessage = "Seat numbers must be between 1 and 5")]
         [Display(Name = "Free Seats")]
         public int FreeSeats { get; set; }
-        
-        public double startLatitude { get; set; }
-        public double startLongitude { get; set; }
-        public double stopLatitude { get; set; }
-        public double stopLongitude { get; set; }
+
+        [Display(Name = "Start Hour")]
+        public TimeSpan StartHour { get; set; }
+
+        [Display(Name = "User Type")]
+        public EnumUserType UserType { get; set; }
+
+        [Required(ErrorMessage = "Set source point on the map!")]
+        public string StartLatitude { get; set; }
+        public string StartLongitude { get; set; }
+
+        [Required(ErrorMessage = "Set destination point on the map!")]
+        public string StopLatitude { get; set; }
+        public string StopLongitude { get; set; }
     }
 }

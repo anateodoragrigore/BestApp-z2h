@@ -26,48 +26,34 @@ namespace BestApp.Controllers
             //validare
             if (!ModelState.IsValid)
                 return View();
-
             else
             {
-
                 //save Route to database
                 using (var context = new BestAppContext())
                 {
-
-
                     var newtrack = new Track()
                     {
                         CarSeats = model.FreeSeats,
                         Start = DbGeography.PointFromText(
                             string.Format("POINT({0} {1})",
-                            model.startLatitude,
-                            model.startLongitude)
+                            model.StartLatitude,
+                            model.StartLongitude)
                             , 4326),
                         Stop = DbGeography.PointFromText(
                             string.Format("POINT({0} {1})",
-                            model.stopLatitude,
-                            model.stopLongitude)
+                            model.StopLatitude,
+                            model.StopLongitude)
                             , 4326),
-                        StartHour = TimeSpan.FromHours(8),
+                        StartHour = model.StartHour,
                         UserType = EnumUserType.Driver
-
                     };
 
                     context.TrackSet.Add(newtrack);
                     context.SaveChanges();
                 }
-
             }
 
-            //Console.WriteLine(model.Name);
-            //var routePosted = new List<object>();
-            //routePosted.Add(new { Nume = model.Name, Telefon = model.PhoneNumber, Email = model.Email, 
-            //            nrLocuri = model.FreeSeats, LatPlecare = model.startLatitude,  longPlecare = model.startLongitude,
-            //            LatSosire = model.stopLatitude, LongSosire = model.stopLongitude});
-
-
-
-
+          
             return View();
 
         }
