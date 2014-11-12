@@ -1,13 +1,43 @@
-﻿
+﻿@model BestApp.Models.SearchRouteModel
 @{
     ViewBag.Title = "Search Route";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Search Route</h2>
+
 <div class="row" style="margin-top:50px">
     <div class="col-md-8">
         @Html.Partial("~/Views/Shared/DefaultMap.cshtml")
+    </div>
+
+    <div class="col-md-4">
+
+        @using (Html.BeginForm())
+        {
+            @Html.TextBoxFor(Model => Model.StartLatitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StartLongitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StopLatitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StopLongitude, new { @class = "super-hidden" })
+
+
+            <div class="row" style="margin-top:50px">
+                <div class="col-md-6">
+                    @Html.LabelFor(Model => Model.StartHour)
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(Model => Model.StartHour)
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:50px">
+                <div class="col-md-6">
+                    <input type="submit" value="Create Route!" />
+                </div>
+            </div>
+            @Html.ValidationSummary(){ }
+        }
+
     </div>
 </div>
 <script type="text/javascript">
@@ -35,12 +65,12 @@
 
     $(document).ready(function () {
         var onDragendPlecare = function (e) {
-            $('#LatPlecare').val(markerPlecare._latlng.lat);
-            $('#LongPlecare').val(markerPlecare._latlng.lng);
+            $('#StartLatitude').val(markerPlecare._latlng.lat);
+            $('#StartLongitude').val(markerPlecare._latlng.lng);
         }
         var onDragendSosire = function (e) {
-            $('#LatSosire').val(markerSosire._latlng.lat);
-            $('#LongSosire').val(markerSosire._latlng.lng);
+            $('#StopLatitude').val(markerSosire._latlng.lat);
+            $('#StopLongitude').val(markerSosire._latlng.lng);
         }
 
         var onClick = function (e) {
@@ -49,16 +79,16 @@
                 markerPlecare.addTo(map).bindPopup("Ia-ma, nene!");
                 markerPlecare.on('dragend', onDragendPlecare);
                 firstClick = true;
-                $('#LatPlecare').val(e.latlng.lat);
-                $('#LongPlecare').val(e.latlng.lng);
+                $('#StartLatitude').val(e.latlng.lat);
+                $('#StartLongitude').val(e.latlng.lng);
             }
             else if (!secondClick) {
                 markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon:buildingIcon });
                 markerSosire.addTo(map).bindPopup("Punct sosire");
                 markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
-                $('#LatSosire').val(e.latlng.lat);
-                $('#LongSosire').val(e.latlng.lng);
+                $('#StopLatitude').val(e.latlng.lat);
+                $('#StopLongitude').val(e.latlng.lng);
             }
         }
         map.on('click', onClick);
