@@ -12,7 +12,7 @@ namespace BestApp.Models.Configuration
     {
         public UserTrackConfiguration()
         {
-            
+            HasKey(p => p.Id);
+
         }
     }
-}

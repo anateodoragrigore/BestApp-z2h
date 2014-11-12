@@ -9,8 +9,7 @@ namespace BestApp.Entities
 {
     public class User: BaseEntity<int>
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string  EmailAddress { get; set; }
     }
