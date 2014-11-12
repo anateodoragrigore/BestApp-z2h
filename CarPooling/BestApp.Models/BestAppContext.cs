@@ -27,6 +27,8 @@ namespace BestApp.Models
 
 
             modelBuilder.Configurations.Add(new UserTrackConfiguration());
+
+
             base.OnModelCreating(modelBuilder);
         }
     }
