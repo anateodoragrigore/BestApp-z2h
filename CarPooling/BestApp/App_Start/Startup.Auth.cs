@@ -54,9 +54,9 @@ namespace BestApp
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "725177054223130",
+               appSecret: "a351cf6c3ae2bbbd7203173d16ecde8d");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
