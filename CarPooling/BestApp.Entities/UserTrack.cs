@@ -9,6 +9,7 @@ namespace BestApp.Entities
 {
     public class UserTrack : BaseEntity<int>
     {
-        
+        public User User { get; set; }
+        public Track Track { get; set; }
     }
 }
