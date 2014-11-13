@@ -18,6 +18,7 @@ namespace BestApp.Models
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "E-mail must be filled out")]
+        [RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$", ErrorMessage = "Invalid e-mail address!")]
         public string Email { get; set; }
         
         [Range(1, 5, ErrorMessage = "Seat numbers must be between 1 and 5")]
