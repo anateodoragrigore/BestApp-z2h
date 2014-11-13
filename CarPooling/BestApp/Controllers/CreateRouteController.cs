@@ -36,6 +36,7 @@ namespace BestApp.Controllers
                 //save Route to database
                 using (var context = new BestAppContext())
                 {
+                    //salvare in track
                     var newtrack = new Track()
                     {
                         CarSeats = model.FreeSeats,
@@ -50,26 +51,15 @@ namespace BestApp.Controllers
                             model.StopLongitude)
                             , 4326),
                         StartHour = model.StartHour,
-                        UserType = EnumUserType.Driver
-                    };
-
-                    context.TrackSet.Add(newtrack);
-                    context.SaveChanges();
-
-                    var newuser = new User()
-                    {
                         PhoneNumber = model.PhoneNumber,
-                        EmailAddress = model.Email,
-                        Name = model.Name
+                        EmailAddress = model.Email
+                       
                     };
-                    context.UserSet.Add(newuser);
+                    context.TrackSet.Add(newtrack);
                     context.SaveChanges();
                 }
             }
-
-          
             return View();
-
         }
     }
 }
