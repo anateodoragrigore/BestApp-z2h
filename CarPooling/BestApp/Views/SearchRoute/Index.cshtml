@@ -139,8 +139,6 @@
                     
                 return marker;
             }
-            
-                
         });
 
         if (firstClick == true && secondClick == true) {
@@ -163,7 +161,6 @@
                     ]
                 });
 
-
                 map.addLayer(new CustomRouteLayer({
                     directions: dir,
                     fitBounds: true,
@@ -185,13 +182,16 @@
 
     $(document).ready(function () {
         $('#search_button').click(function () {
-            alert("afiseaza lista...loading");
+            $.get("/api/Track", {
+                StartHour: $('#StartHour').val(), StartLatitude: $('#StartLatitude').val(),
+                StartLongitude: $('#StartLongitude').val(), StopLatitude: $('#StopLatitude').val(),
+                StopLongitude: $('#StopLongitude').val()})
+                .done(function (tracks) {
+                    console.log(tracks);
+            });
         });
     });
-    $.get("/api/Track")
-        .done(function (tracks) {
-            console.log(tracks);
-        });
+    
 
 </script>
 
