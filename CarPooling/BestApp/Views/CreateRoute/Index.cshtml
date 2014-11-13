@@ -148,10 +148,10 @@
 
                     custom_icon = carIcon;
                     if (stopNumber == 1) {
-                        marker = L.marker(location.latLng, { draggable: true, icon: custom_icon })
-                            .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
-                            .openPopup()
-                            .addTo(map);
+                    marker = L.marker(location.latLng, { draggable: true, icon: custom_icon })
+                        .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
+                        .openPopup()
+                        .addTo(map);
                     }
                     else {
                         marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
@@ -182,7 +182,7 @@
                         }
                         ]
                     });
-                    
+
 
                     map.addLayer(new CustomRouteLayer({
                         directions: dir,
@@ -190,7 +190,7 @@
                         draggable: true,
                         ribbonOptions: {
                             draggable: false,
-                            ribbonDisplay: { color: '#8258FA', opacity: 0.3 },
+                            ribbonDisplay: { color: '#CC0000', opacity: 0.3 },
                             widths: [15, 15, 15, 15, 14, 13, 12, 12, 12, 11, 11, 11, 11, 12, 13, 14, 15]
                         }
                     }));
