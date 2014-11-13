@@ -57,7 +57,7 @@
     var manIcon = L.icon({
         iconUrl: 'Content/images/man.png',
 
-        iconSize: [30, 30], 
+        iconSize: [30, 38], 
         iconAnchor: [22, 30], 
         popupAnchor: [-3, -90]
     });
@@ -65,7 +65,7 @@
     var bIcon = L.icon({
         iconUrl: 'Content/images/buildings10.png',
 
-        iconSize: [38, 57], 
+        iconSize: [30, 38],
         iconAnchor: [22, 30],  
         popupAnchor: [-3, -90] 
     });
@@ -76,7 +76,10 @@
         iconAnchor: [0, 0]
     });
 
+
+
     $(document).ready(function () {
+
         var latStart, latStop, lngStart, lngStop;
 
         var onDragendPlecare = function (e) {
@@ -89,9 +92,11 @@
             $('#StopLongitude').val(markerSosire._latlng.lng);
         }
 
+
+
         var onClick = function (e) {
             if (!firstClick) {
-                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: manIcon });
+                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon });
                 markerPlecare.addTo(map).bindPopup("Punct plecare");
                 markerPlecare.on('dragend', onDragendPlecare);
                 firstClick = true;
@@ -99,9 +104,10 @@
                 $('#StartLongitude').val(e.latlng.lng);
                 latStart = e.latlng.lat;
                 lngStart = e.latlng.lng;
+
             }
             else if (!secondClick) {
-                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon });
+                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon});
                 markerSosire.addTo(map).bindPopup("Punct sosire");
                 markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
@@ -113,7 +119,9 @@
         
         CustomRouteLayer = MQ.Routing.RouteLayer.extend({
             createStopMarker: function (location, stopNumber) {
-                var marker;
+                   
+                    var
+                        marker;
 
               
                 if (stopNumber == 1) {
@@ -122,14 +130,17 @@
                         .openPopup()
                         .addTo(map);
                 }
-                else if (stopNumber == 2){
+                    else if (stopNumber==2)  {
                     marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
                         .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                         .openPopup()
                         .addTo(map);
                 }
+                    
                 return marker;
             }
+            
+                
         });
 
         if (firstClick == true && secondClick == true) {
@@ -167,10 +178,11 @@
         }
     }
 
-
         map.on('click', onClick);
+
+
     });
-   
+
     $(document).ready(function () {
         $('#search_button').click(function () {
             alert("afiseaza lista...loading");
