@@ -32,7 +32,7 @@
 
             <div class="row" style="margin-top:50px">
                 <div class="col-md-6">
-                    <input type="submit" value="Search Route!" />
+                    <input type="button" id="search_button" value="Search Route!" />
                 </div>
             </div>
             @Html.ValidationSummary(){ }
@@ -170,10 +170,15 @@
 
         map.on('click', onClick);
     });
-
+   
+    $(document).ready(function () {
+        $('#search_button').click(function () {
+            alert("afiseaza lista...loading");
+        });
+    });
     $.get("/api/Track")
-        .done(function () {
-            alert("merge");
+        .done(function (tracks) {
+            console.log(tracks);
         });
 
 </script>
