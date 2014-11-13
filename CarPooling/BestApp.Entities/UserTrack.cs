@@ -12,7 +12,5 @@ namespace BestApp.Entities
         public User User { get; set; }
         public Track Track { get; set; }
         public EnumUserType UserType { get; set; }
-        public TimeSpan JoinHour { get; set; }
-        // JoinHour reprezinta   ora de plecare a pasagerului/ora de plecare a soferului
     }
 }
