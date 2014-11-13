@@ -25,6 +25,7 @@ namespace BestApp.Models
         public int FreeSeats { get; set; }
 
         [Display(Name = "Start Hour")]
+        [Required]
         public TimeSpan StartHour { get; set; }
 
         [Display(Name = "User Type")]
