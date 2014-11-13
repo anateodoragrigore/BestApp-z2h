@@ -96,6 +96,13 @@
         popupAnchor: [-3, -90] // point from which the popup should open relative to the iconAnchor
     });
 
+    var bIcon = L.icon({
+        iconUrl: 'Content/images/buildings10.png',
+
+        iconSize: [30, 38], // size of the icon
+        iconAnchor: [22, 30], // point of the icon which will correspond to marker's location
+        popupAnchor: [-3, -90] // point from which the popup should open relative to the iconAnchor
+    });
 
     $(document).ready(function () {
 
@@ -140,12 +147,18 @@
                         marker;
 
                     custom_icon = carIcon;
-
-                    marker = L.marker(location.latLng, { draggable: true, icon: custom_icon })
-                        .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
-                        .openPopup()
-                        .addTo(map);
-
+                    if (stopNumber == 1) {
+                        marker = L.marker(location.latLng, { draggable: true, icon: custom_icon })
+                            .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
+                            .openPopup()
+                            .addTo(map);
+                    }
+                    else {
+                        marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
+                            .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
+                            .openPopup()
+                            .addTo(map);
+                    }
                     return marker;
                 }
             });
@@ -169,7 +182,7 @@
                         }
                         ]
                     });
-
+                    
 
                     map.addLayer(new CustomRouteLayer({
                         directions: dir,
