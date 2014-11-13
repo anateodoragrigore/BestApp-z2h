@@ -55,6 +55,15 @@ namespace BestApp.Controllers
 
                     context.TrackSet.Add(newtrack);
                     context.SaveChanges();
+
+                    var newuser = new User()
+                    {
+                        PhoneNumber = model.PhoneNumber,
+                        EmailAddress = model.Email,
+                        Name = model.Name
+                    };
+                    context.UserSet.Add(newuser);
+                    context.SaveChanges();
                 }
             }
 
