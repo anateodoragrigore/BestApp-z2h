@@ -20,6 +20,7 @@ namespace BestApp.Models
         }
         public virtual  DbSet<Track> TrackSet {get;set;}
         public virtual  DbSet<User> UserSet { get; set; }
+        public virtual DbSet<UserTrack> UserTrackSet{ get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -30,6 +31,24 @@ namespace BestApp.Models
 
 
             base.OnModelCreating(modelBuilder);
+        }
+        public Entities.User GetCurrentUser(string userName)
+        {
+            User currentuser = null;
+            if (!UserSet.Any(o => o.Name == userName))
+            {
+                var newuser = new User()
+                {
+                    Name = userName
+                };
+                UserSet.Add(newuser);
+                currentuser = newuser;
+            }
+            else
+            {
+                currentuser = UserSet.Single(o => o.Name == userName);
+            }
+            return currentuser;
         }
     }
 }

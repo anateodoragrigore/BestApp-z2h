@@ -45,5 +45,23 @@ namespace BestApp.Controllers
             }
 
         }
+
+        public void Post(int id)
+        {
+            using (var context = new BestAppContext())
+            {
+                var track = context.TrackSet.Find(id);
+                User currentuser = context.GetCurrentUser(User.Identity.Name);
+                var userTrack = new UserTrack()
+                {
+                    User = currentuser,
+                    Track = track
+
+                };
+                context.UserTrackSet.Add(userTrack);
+                context.SaveChanges();
+
+            }
+        }
     }
 }

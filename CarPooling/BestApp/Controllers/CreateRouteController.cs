@@ -47,7 +47,7 @@ namespace BestApp.Controllers
         {
             using (var context = new BestAppContext())
             {
-                User currentuser = GetCurrentUser(context);
+                User currentuser = context.GetCurrentUser(User.Identity.Name);
 
                 var newtrack = new Track()
                 {
@@ -71,25 +71,6 @@ namespace BestApp.Controllers
                 context.TrackSet.Add(newtrack);
                 context.SaveChanges();
             }
-        }
-
-        private Entities.User GetCurrentUser(BestAppContext context)
-        {
-            User currentuser = null;
-            if (!context.UserSet.Any(o => o.Name == User.Identity.Name))
-            {
-                var newuser = new User()
-                {
-                    Name = User.Identity.Name
-                };
-                context.UserSet.Add(newuser);
-                currentuser = newuser;
-            }
-            else
-            {
-                currentuser = context.UserSet.Single(o => o.Name == User.Identity.Name);
-            }
-            return currentuser;
         }
     }
 }
