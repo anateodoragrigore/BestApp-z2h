@@ -18,7 +18,7 @@ namespace BestApp.Models
         {
 
         }
-        public virtual DbSet<Track> TrackSet {get;set;}
+        public virtual  DbSet<Track> TrackSet {get;set;}
         public virtual  DbSet<User> UserSet { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

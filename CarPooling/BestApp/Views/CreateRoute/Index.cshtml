@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-             <div class="row" style="margin-top:50px">
+            <div class="row" style="margin-top:50px">
                 <div class="col-md-6">
                     @Html.LabelFor(Model => Model.StartHour)
                 </div>
@@ -59,7 +59,7 @@
                     @Html.EditorFor(Model => Model.StartHour)
                 </div>
             </div>
-            
+
             <div class="row" style="margin-top:50px">
                 <div class="col-md-6">
                     @Html.LabelFor(Model => Model.FreeSeats)
@@ -81,7 +81,7 @@
 <script src="//www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=Fmjtd%7Cluurn9ua2h%2C8w%3Do5-9wzlhy"></script>
 <script src="//www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=Fmjtd%7Cluurn9ua2h%2C8w%3Do5-9wzlhy"></script>
 <script type="text/javascript">
-   
+
 
     var firstClick = false;
     var secondClick = false;
@@ -105,6 +105,9 @@
     });
 
     $(document).ready(function () {
+
+        var latStart, latStop, lngStart, lngStop;
+
         var onDragendPlecare = function (e) {
             $('#StartLatitude').val(markerPlecare._latlng.lat);
             $('#StartLongitude').val(markerPlecare._latlng.lng);
@@ -117,12 +120,14 @@
 
         var onClick = function (e) {
             if (!firstClick) {
-                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true , icon:carIcon});
+                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: carIcon });
                 markerPlecare.addTo(map).bindPopup("Punct plecare");
                 markerPlecare.on('dragend', onDragendPlecare);
                 firstClick = true;
                 $('#StartLatitude').val(e.latlng.lat);
                 $('#StartLongitude').val(e.latlng.lng);
+                latStart = e.latlng.lat;
+                lngStart = e.latlng.lng;
 
             }
             else if (!secondClick) {
@@ -132,34 +137,46 @@
                 secondClick = true;
                 $('#StopLatitude').val(e.latlng.lat);
                 $('#StopLongitude').val(e.latlng.lng);
+                latStop = e.latlng.lat;
+                lngStop = e.latlng.lng;
+            }
+            console.log(latStart, lngStart);
+
+
+            if (firstClick == true && secondClick == true) {
+                var dir;
+                $(document).ready(function (e) {
+                    dir = MQ.routing.directions();
+
+                    dir.route({
+                        locations: [{
+                            latLng: {
+                                lat: latStart,
+                                lng: lngStart
+                            }
+                        }, {
+                            latLng: {
+                                lat: latStop,
+                                lng: lngStop
+                            }
+                        }
+                        ]
+                    });
+
+
+                    map.addLayer(MQ.routing.routeLayer({
+                        directions: dir,
+                        fitBounds: true
+                    }));
+                });
             }
         }
+
         map.on('click', onClick);
 
+
     });
 
-    var map,
-      dir;
 
-    //map = L.map('map', {
-    //    layers: MQ.mapLayer(),
-    //    center: [45.17, 23.4],
-    //    zoom: 15
-    //});
-    $(document).ready(function () {
-        dir = MQ.routing.directions();
-
-        dir.route({
-            locations: [
-                'Strada Matei Basarab, Bucuresti',
-                'Strada Vulturilor, Bucuresti'
-            ]
-        });
-
-        map.addLayer(MQ.routing.routeLayer({
-            directions: dir,
-            fitBounds: true
-        }));
-    });
 
 </script>
