@@ -144,7 +144,7 @@
                     marker = L.marker(location.latLng, { draggable: true, icon: custom_icon })
                         .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                         .openPopup()
-                        .addTo(map);
+                       .addTo(map);
 
                     return marker;
                 }
@@ -176,7 +176,7 @@
                         fitBounds: true,
                         draggable: true,
                         ribbonOptions: {
-                            draggable: false,
+                            draggable: false,   //desenaza mai multe ruteeeee
                             ribbonDisplay: { color: '#CC0000', opacity: 0.3 },
                             widths: [15, 15, 15, 15, 14, 13, 12, 12, 12, 11, 11, 11, 11, 12, 13, 14, 15]
                         }
