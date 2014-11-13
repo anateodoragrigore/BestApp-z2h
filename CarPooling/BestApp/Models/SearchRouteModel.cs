@@ -10,11 +10,11 @@ namespace BestApp.Models
     public class SearchRouteModel
     {
 
-        [Display(Name = "Start Hour")]
+        //[Display(Name = "Start Hour")]
         [Required]
         public TimeSpan StartHour { get; set; }
 
-        [Display(Name = "User Type")]
+        //[Display(Name = "User Type")]
         public EnumUserType UserType { get; set; }
 
         [Required(ErrorMessage = "Set source point on the map!")]

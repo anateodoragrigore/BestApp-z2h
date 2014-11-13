@@ -183,9 +183,12 @@
     $(document).ready(function () {
         $('#search_button').click(function () {
             $.get("/api/Track", {
-                StartHour: $('#StartHour').val(), StartLatitude: $('#StartLatitude').val(),
-                StartLongitude: $('#StartLongitude').val(), StopLatitude: $('#StopLatitude').val(),
-                StopLongitude: $('#StopLongitude').val()})
+                startHour: $('#StartHour').val(),
+                startLatitude: $('#StartLatitude').val(),
+                startLongitude: $('#StartLongitude').val(),
+                stopLatitude: $('#StopLatitude').val(),
+                stopLongitude: $('#StopLongitude').val()
+            })
                 .done(function (tracks) {
                     console.log(tracks);
             });
