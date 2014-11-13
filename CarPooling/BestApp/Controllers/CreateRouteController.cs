@@ -38,49 +38,58 @@ namespace BestApp.Controllers
             }
             else
             {
-                //save Route to database
-                using (var context = new BestAppContext())
-                {
-                    User currentuser = null ;
-                    if (!context.UserSet.Any(o => o.Name == User.Identity.Name))
-                    {
-                        var newuser = new User(){
-                            Name = User.Identity.Name
-                        };
-                        context.UserSet.Add(newuser);
-                        currentuser = newuser;
-                    }
-                    else {
-                        currentuser = context.UserSet.Single(o => o.Name == User.Identity.Name);
-                    }
-
-                    //salvare in track
-                    var newtrack = new Track()
-                    {
-                        CarSeats = model.FreeSeats,
-                        Start = DbGeography.PointFromText(
-                            string.Format("POINT({0} {1})",
-                            model.StartLatitude,
-                            model.StartLongitude)
-                            , 4326),
-                        Stop = DbGeography.PointFromText(
-                            string.Format("POINT({0} {1})",
-                            model.StopLatitude,
-                            model.StopLongitude)
-                            , 4326),
-                        StartHour = model.StartHour,
-                        PhoneNumber = model.PhoneNumber,
-                        EmailAddress = model.Email,
-                        UserOwner = currentuser
-                       
-                    };
-
-
-                    context.TrackSet.Add(newtrack);
-                    context.SaveChanges();
-                }
+                SaveTrackToDatabase(model);
             }
             return View();
+        }
+
+        private void SaveTrackToDatabase(CreateRouteModel model)
+        {
+            using (var context = new BestAppContext())
+            {
+                User currentuser = GetCurrentUser(context);
+
+                var newtrack = new Track()
+                {
+                    CarSeats = model.FreeSeats,
+                    Start = DbGeography.PointFromText(
+                        string.Format("POINT({0} {1})",
+                        model.StartLatitude,
+                        model.StartLongitude)
+                        , 4326),
+                    Stop = DbGeography.PointFromText(
+                        string.Format("POINT({0} {1})",
+                        model.StopLatitude,
+                        model.StopLongitude)
+                        , 4326),
+                    StartHour = model.StartHour,
+                    PhoneNumber = model.PhoneNumber,
+                    EmailAddress = model.Email,
+                    UserOwner = currentuser
+                };
+
+                context.TrackSet.Add(newtrack);
+                context.SaveChanges();
+            }
+        }
+
+        private Entities.User GetCurrentUser(BestAppContext context)
+        {
+            User currentuser = null;
+            if (!context.UserSet.Any(o => o.Name == User.Identity.Name))
+            {
+                var newuser = new User()
+                {
+                    Name = User.Identity.Name
+                };
+                context.UserSet.Add(newuser);
+                currentuser = newuser;
+            }
+            else
+            {
+                currentuser = context.UserSet.Single(o => o.Name == User.Identity.Name);
+            }
+            return currentuser;
         }
     }
 }
