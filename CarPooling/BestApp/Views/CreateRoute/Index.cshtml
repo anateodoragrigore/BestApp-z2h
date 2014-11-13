@@ -115,19 +115,17 @@
             $('#StopLongitude').val(markerSosire._latlng.lng);
         }
 
-
-
         var onClick = function (e) {
             if (!firstClick) {
-                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: carIcon });
-                markerPlecare.addTo(map).bindPopup("Punct plecare");
-                markerPlecare.on('dragend', onDragendPlecare);
-                firstClick = true;
+                 markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: carIcon });
+                    markerPlecare.addTo(map).bindPopup("Punct plecare");
+                    markerPlecare.on('dragend', onDragendPlecare);
+                    firstClick = true;
                 $('#StartLatitude').val(e.latlng.lat);
                 $('#StartLongitude').val(e.latlng.lng);
                 latStart = e.latlng.lat;
                 lngStart = e.latlng.lng;
-
+                
             }
             else if (!secondClick) {
                 markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon});
@@ -138,26 +136,28 @@
                 $('#StopLongitude').val(e.latlng.lng);
                 latStop = e.latlng.lat;
                 lngStop = e.latlng.lng;
+              
             }
             
+
             CustomRouteLayer = MQ.Routing.RouteLayer.extend({
                 createStopMarker: function (location, stopNumber) {
                    
-                    var
-                        marker;
+                    var  marker;
 
-                    
                     if (stopNumber == 1) {
                         marker = L.marker(location.latLng, { draggable: true, icon: carIcon })
                             .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                             .openPopup()
                            .addTo(map);
+                        
                     }
                     else if (stopNumber==2)  {
                         marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
                             .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                             .openPopup()
-                            .addTo(map);
+                            .addTo(map)
+                        map.removeLayer(markerPlecare);
                     }
                     
                     return marker;
@@ -202,6 +202,7 @@
         }
 
         map.on('click', onClick);
+       
 
 
     });
