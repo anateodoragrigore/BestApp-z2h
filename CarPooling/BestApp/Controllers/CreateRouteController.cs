@@ -24,6 +24,11 @@ namespace BestApp.Controllers
         public ActionResult Index(CreateRouteModel model)
         {
             //validare
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (!ModelState.IsValid)
             {
                 Console.WriteLine(model.StartLatitude);
@@ -36,6 +41,19 @@ namespace BestApp.Controllers
                 //save Route to database
                 using (var context = new BestAppContext())
                 {
+                    User currentuser = null ;
+                    if (!context.UserSet.Any(o => o.Name == User.Identity.Name))
+                    {
+                        var newuser = new User(){
+                            Name = User.Identity.Name
+                        };
+                        context.UserSet.Add(newuser);
+                        currentuser = newuser;
+                    }
+                    else {
+                        currentuser = context.UserSet.Single(o => o.Name == User.Identity.Name);
+                    }
+
                     //salvare in track
                     var newtrack = new Track()
                     {
@@ -52,9 +70,12 @@ namespace BestApp.Controllers
                             , 4326),
                         StartHour = model.StartHour,
                         PhoneNumber = model.PhoneNumber,
-                        EmailAddress = model.Email
+                        EmailAddress = model.Email,
+                        UserOwner = currentuser
                        
                     };
+
+
                     context.TrackSet.Add(newtrack);
                     context.SaveChanges();
                 }

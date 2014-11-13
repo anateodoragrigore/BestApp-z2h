@@ -9,8 +9,7 @@ namespace BestApp.Models
 {
     public class CreateRouteModel
     {
-        [Required(ErrorMessage = "Firstname must be filled out")]
-        [Display(Name="Name")]
+        
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Phone number must be filled out")]
