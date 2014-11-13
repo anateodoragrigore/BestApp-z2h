@@ -96,6 +96,15 @@
         popupAnchor: [-3, -90] // point from which the popup should open relative to the iconAnchor
     });
 
+    var buildingIcon = L.icon({
+        iconUrl: 'Content/images/buildings10.png',
+ 
+        iconSize: [38, 57], // size of the icon
+                iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+               iconAnchor: [22, 30], // point of the icon which will correspond to marker's location
+        popupAnchor: [-3, -90] // point from which the popup should open relative to the iconAnchor
+        });
+
 
     $(document).ready(function () {
 
@@ -136,10 +145,10 @@
             console.log(latStart, lngStart);
             CustomRouteLayer = MQ.Routing.RouteLayer.extend({
                 createStopMarker: function (location, stopNumber) {
+                    
                     var custom_icon,
                         marker;
-
-                    custom_icon = carIcon;
+                     
 
                     marker = L.marker(location.latLng, { draggable: true, icon: custom_icon })
                         .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
