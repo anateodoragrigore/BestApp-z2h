@@ -92,14 +92,36 @@
         iconAnchor: [22, 30], 
         popupAnchor: [-3, -90] 
     });
+    var emptyIcon = L.icon({
+        iconUrl: 'Content/images/empty.jpg',
+
+        iconSize: [0, 0],
+        iconAnchor: [0, 0]
+    });
+
+
 
     $(document).ready(function () {
 
         var latStart, latStop, lngStart, lngStop;
 
+        var onDragendPlecare = function (e) {
+            $('#StartLatitude').val(markerPlecare._latlng.lat);
+            $('#StartLongitude').val(markerPlecare._latlng.lng);
+
+        }
+        var onDragendSosire = function (e) {
+            $('#StopLatitude').val(markerSosire._latlng.lat);
+            $('#StopLongitude').val(markerSosire._latlng.lng);
+        }
+
+
 
         var onClick = function (e) {
             if (!firstClick) {
+                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: carIcon });
+                markerPlecare.addTo(map).bindPopup("Punct plecare");
+                markerPlecare.on('dragend', onDragendPlecare);
                 firstClick = true;
                 $('#StartLatitude').val(e.latlng.lat);
                 $('#StartLongitude').val(e.latlng.lng);
@@ -108,6 +130,9 @@
 
             }
             else if (!secondClick) {
+                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon});
+                markerSosire.addTo(map).bindPopup("Punct sosire");
+                markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
                 $('#StopLatitude').val(e.latlng.lat);
                 $('#StopLongitude').val(e.latlng.lng);
@@ -117,25 +142,28 @@
             
             CustomRouteLayer = MQ.Routing.RouteLayer.extend({
                 createStopMarker: function (location, stopNumber) {
-                    
-                    var custom_icon,
+                   
+                    var
                         marker;
 
-                    custom_icon = carIcon;
+                    
                     if (stopNumber == 1) {
-                    marker = L.marker(location.latLng, { draggable: true, icon: custom_icon })
-                        .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
-                        .openPopup()
-                       .addTo(map);
+                        marker = L.marker(location.latLng, { draggable: true, icon: carIcon })
+                            .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
+                            .openPopup()
+                           .addTo(map);
                     }
-                    else {
+                    else if (stopNumber==2)  {
                         marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
                             .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                             .openPopup()
                             .addTo(map);
                     }
+                    
                     return marker;
                 }
+            
+                
             });
 
             if (firstClick == true && secondClick == true) {
