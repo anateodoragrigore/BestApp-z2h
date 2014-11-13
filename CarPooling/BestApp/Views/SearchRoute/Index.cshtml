@@ -54,19 +54,19 @@
     var markerPlecare;
     var markerSosire;
 
-    var manIcon = L.icon({
+     var manIcon = L.icon({
         iconUrl: 'Content/images/man.png',
 
-        iconSize: [30, 30], 
-        iconAnchor: [22, 30], 
+        iconSize: [30, 38], 
+        iconAnchor: [22, 30],
         popupAnchor: [-3, -90]
     });
 
     var bIcon = L.icon({
         iconUrl: 'Content/images/buildings10.png',
 
-        iconSize: [38, 57], 
-        iconAnchor: [22, 30],  
+        iconSize: [30, 38],
+        iconAnchor: [22, 30], 
         popupAnchor: [-3, -90] 
     });
     var emptyIcon = L.icon({
@@ -76,7 +76,10 @@
         iconAnchor: [0, 0]
     });
 
+
+
     $(document).ready(function () {
+
         var latStart, latStop, lngStart, lngStop;
 
         var onDragendPlecare = function (e) {
@@ -89,9 +92,11 @@
             $('#StopLongitude').val(markerSosire._latlng.lng);
         }
 
+
+
         var onClick = function (e) {
             if (!firstClick) {
-                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: manIcon });
+                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon });
                 markerPlecare.addTo(map).bindPopup("Punct plecare");
                 markerPlecare.on('dragend', onDragendPlecare);
                 firstClick = true;
@@ -99,9 +104,10 @@
                 $('#StartLongitude').val(e.latlng.lng);
                 latStart = e.latlng.lat;
                 lngStart = e.latlng.lng;
+
             }
             else if (!secondClick) {
-                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon });
+                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon});
                 markerSosire.addTo(map).bindPopup("Punct sosire");
                 markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
@@ -110,70 +116,81 @@
                 latStop = e.latlng.lat;
                 lngStop = e.latlng.lng;
             }
-        
-        CustomRouteLayer = MQ.Routing.RouteLayer.extend({
-            createStopMarker: function (location, stopNumber) {
-                var marker;
+            
+            CustomRouteLayer = MQ.Routing.RouteLayer.extend({
+                createStopMarker: function (location, stopNumber) {
+                   
+                    var
+                        marker;
 
-              
-                if (stopNumber == 1) {
-                    marker = L.marker(location.latLng, { draggable: true, icon: manIcon })
-                        .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
-                        .openPopup()
-                        .addTo(map);
-                }
-                else if (stopNumber == 2){
-                    marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
-                        .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
-                        .openPopup()
-                        .addTo(map);
-                }
-                return marker;
-            }
-        });
-
-        if (firstClick == true && secondClick == true) {
-            var dir;
-            $(document).ready(function (e) {
-                dir = MQ.routing.directions();
-
-                dir.route({
-                    locations: [{
-                        latLng: {
-                            lat: latStart,
-                            lng: lngStart
-                        }
-                    }, {
-                        latLng: {
-                            lat: latStop,
-                            lng: lngStop
-                        }
+                    
+                    if (stopNumber == 1) {
+                        marker = L.marker(location.latLng, { draggable: true, icon: manIcon })
+                            .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
+                            .openPopup()
+                           .addTo(map);
                     }
-                    ]
-                });
-
-
-                map.addLayer(new CustomRouteLayer({
-                    directions: dir,
-                    fitBounds: true,
-                    draggable: true,
-                    ribbonOptions: {
-                        draggable: false,
-                        ribbonDisplay: { color: '#39008F', opacity: 0.3 },
-                        widths: [15, 15, 15, 15, 14, 13, 12, 12, 12, 11, 11, 11, 11, 12, 13, 14, 15]
+                    else if (stopNumber==2)  {
+                        marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
+                            .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
+                            .openPopup()
+                            .addTo(map);
                     }
-                }));
+                    
+                    return marker;
+                }
+            
+                
             });
-        }
-    }
 
+            if (firstClick == true && secondClick == true) {
+                var dir;
+                $(document).ready(function (e) {
+                    dir = MQ.routing.directions();
+
+                    dir.route({
+                        locations: [{
+                            latLng: {
+                                lat: latStart,
+                                lng: lngStart
+                            }
+                        }, {
+                            latLng: {
+                                lat: latStop,
+                                lng: lngStop
+                            }
+                        }
+                        ]
+                    });
+
+
+                    map.addLayer(new CustomRouteLayer({
+                        directions: dir,
+                        fitBounds: true,
+                        draggable: true,
+                        ribbonOptions: {
+                            draggable: false,
+                            ribbonDisplay: { color: '#39008F', opacity: 0.3 },
+                            widths: [15, 15, 15, 15, 14, 13, 12, 12, 12, 11, 11, 11, 11, 12, 13, 14, 15]
+                        }
+                    }));
+                });
+            }
+        }
 
         map.on('click', onClick);
+
+
     });
+
+
+
+    
+
 
     $.get("/api/Track")
         .done(function () {
-            alert("merge");
+           
         });
 
 </script>
