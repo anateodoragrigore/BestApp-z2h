@@ -12,35 +12,12 @@ namespace BestApp.Controllers
 {
     public class TrackController : ApiController
     {
-
-        private void SaveTrackToDatabase(CreateRouteModel model)
+        
+        public IEnumerable<Track> GetTracks([FromBody]SearchRouteModel model)
         {
-            using (var context = new BestAppContext())
+            using (var context= new BestAppContext())
             {
-                var newtrack = new Track()
-                {
-                    CarSeats = model.FreeSeats,
-                    Start = DbGeography.PointFromText(
-                        string.Format("POINT({0} {1})",
-                        model.StartLatitude,
-                        model.StartLongitude)
-                        , 4326),
-                    Stop = DbGeography.PointFromText(
-                        string.Format("POINT({0} {1})",
-                        model.StopLatitude,
-                        model.StopLongitude)
-                        , 4326),
-                    StartHour = model.StartHour
-                };
-
-            }
-        }
-
-        public IEnumerable<Track> GetTracks()
-        {
-            using (var model = new BestAppContext())
-            {
-                return model.TrackSet.ToList();
+                return context.TrackSet.ToList();
 
             }
 
