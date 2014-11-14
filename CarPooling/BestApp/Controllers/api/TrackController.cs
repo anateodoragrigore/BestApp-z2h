@@ -15,7 +15,7 @@ namespace BestApp.Controllers
         public IEnumerable<Track> GetTracks([FromUri]SearchRouteModel model)
         {
             double maxDelayInMinutes = 30;
-            double maxDistanceInMetres = 500;
+            double maxDistanceInMetres = 2000;
 
             using (var context = new BestAppContext())
             {

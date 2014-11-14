@@ -15,5 +15,11 @@ namespace BestApp.Controllers
         {
             return View();
         }
+
+        public ActionResult ShowTrackSelected(string id)
+        {
+            return View();
+        }
+
     }
 }
