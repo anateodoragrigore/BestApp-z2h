@@ -14,14 +14,27 @@ namespace BestApp.Controllers
     {
         public IEnumerable<Track> GetTracks([FromUri]SearchRouteModel model)
         {
-            double maxDelayInMinutes=30; 
+            double maxDelayInMinutes = 30;
+            double maxDistanceInMetres = 500;
 
             using (var context = new BestAppContext())
             {
                 var intervalStart = model.StartHour.Add(TimeSpan.FromMinutes(-maxDelayInMinutes));
                 var intervalStop = model.StartHour.Add(TimeSpan.FromMinutes(maxDelayInMinutes));
 
-                return context.TrackSet.Where(track => intervalStart < track.StartHour && track.StartHour < intervalStop).ToList();
+                var startPoint = DbGeography.PointFromText(string.Format("POINT({0} {1})", 
+                                        model.StartLatitude, model.StartLongitude), 4326);
+                var stopPoint = DbGeography.PointFromText(string.Format("POINT({0} {1})",
+                                        model.StopLatitude, model.StopLongitude), 4326);
+
+                return context.TrackSet.Where(
+
+                    track => intervalStart < track.StartHour && 
+                    track.StartHour < intervalStop &&
+                    track.Start.Distance(startPoint) <= maxDistanceInMetres &&
+                    track.Stop.Distance(stopPoint) <= maxDistanceInMetres
+
+                    ).ToList();
             }
         }
 
