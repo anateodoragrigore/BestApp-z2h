@@ -9,7 +9,7 @@ namespace BestApp.Models.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(BestApp.Models.BestAppContext context)
