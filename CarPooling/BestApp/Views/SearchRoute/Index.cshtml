@@ -198,18 +198,25 @@
         });
             });
     function makeTable(container, data) {
-        var content = "<div><ul>";
+
+        var div = $('<div>');
+        var ul = $('<ul>');
+        div.append(ul);
+
         $.each(data, function (rowIndex, track) {
-            var row = "<li>";
+            var li = $('<li>');
+            var button = $("<a href=\"searchRoute\\ShowTrackSelected\" class=\"btn btn-small\">Select</a>");
+            var content = track.StartHour + ' ' + track.PhoneNumber + ' ' + track.UserOwner.Name;
+            li.append(content);
+            li.append(button);
+            ul.append(li);
 
-            row= row + track.StartHour +' '+track.PhoneNumber+' '+track.UserOwner.Name ;
-            row= row + "<button class=\"btn btn-small\">Select</button>";
-            row = row + '</li>'
-            content = content + row;
-    });
+          
+        });
 
-        content = content + '</ul></div>';
-        return container.append(content);
-       
+        return container.append(div);
+        
     }
+
+    
 </script>
