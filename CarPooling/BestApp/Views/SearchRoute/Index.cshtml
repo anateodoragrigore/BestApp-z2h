@@ -7,41 +7,41 @@
 <h2>Search Route</h2>
 
     <div class="row" >
-        <div class="col-md-8">
-            @Html.Partial("~/Views/Shared/DefaultMap.cshtml")
-        </div>
+    <div class="col-md-8">
+        @Html.Partial("~/Views/Shared/DefaultMap.cshtml")
+    </div>
 
-        <div class="col-md-4">
+    <div class="col-md-4">
 
-            @using (Html.BeginForm())
-            {
-                @Html.TextBoxFor(Model => Model.StartLatitude, new { @class = "super-hidden" })
-                @Html.TextBoxFor(Model => Model.StartLongitude, new { @class = "super-hidden" })
-                @Html.TextBoxFor(Model => Model.StopLatitude, new { @class = "super-hidden" })
-                @Html.TextBoxFor(Model => Model.StopLongitude, new { @class = "super-hidden" })
+        @using (Html.BeginForm())
+        {
+            @Html.TextBoxFor(Model => Model.StartLatitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StartLongitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StopLatitude, new { @class = "super-hidden" })
+            @Html.TextBoxFor(Model => Model.StopLongitude, new { @class = "super-hidden" })
 
-                <div id="hideDivSearch">
-                    <div class="row" style="margin-top:50px">
-                        <div class="col-md-6">
-                            @Html.LabelFor(Model => Model.StartHour)
-                        </div>
-                        <div class="col-md-6">
-                            @Html.EditorFor(Model => Model.StartHour)
-                        </div>
-                    </div>
-
-                    <div class="row" id="divButton" style="margin-top:50px">
-                        <div class="col-md-6">
-                            <input type="button" id="search_button" value="Search Route!" onclick="$('#hideDivSearch').hide();" />
-                        </div>
-                    </div>
+          <div id="hideDivSearch"> 
+            <div class="row" style="margin-top:50px">
+                <div class="col-md-6">
+                    @Html.LabelFor(Model => Model.StartHour)
                 </div>
-                @Html.ValidationSummary(){ }
-            }
+                <div class="col-md-6">
+                    @Html.EditorFor(Model => Model.StartHour)
+                </div>
+            </div>
 
-        </div>
-        <div id="tableSearch" class="col-md-4" style="margin-top:50px">
-        </div>
+            <div class="row" id="divButton" style="margin-top:50px">
+                <div class="col-md-6">
+                            <input type="button" id="search_button" value="Search Route!" onclick="$('#hideDivSearch').hide();" />
+                </div>
+            </div>
+            </div>
+            @Html.ValidationSummary(){ }
+        }
+
+    </div>
+    <div id="tableSearch" class="col-md-4" style="margin-top:50px">
+</div>
 </div>
 
 <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")" type="text/javascript"></script>
@@ -60,8 +60,8 @@
     var manIcon = L.icon({
         iconUrl: 'Content/images/man.png',
 
-        iconSize: [30, 38],
-        iconAnchor: [22, 30],
+        iconSize: [30, 38], 
+        iconAnchor: [22, 30], 
         popupAnchor: [-3, -90]
     });
 
@@ -69,8 +69,8 @@
         iconUrl: 'Content/images/buildings10.png',
 
         iconSize: [30, 38],
-        iconAnchor: [22, 30],
-        popupAnchor: [-3, -90]
+        iconAnchor: [22, 30],  
+        popupAnchor: [-3, -90] 
     });
     var emptyIcon = L.icon({
         iconUrl: 'Content/images/empty.jpg',
@@ -120,65 +120,65 @@
                 lngStop = e.latlng.lng;
                 $('#search_button').prop("disabled", false);
             }
-
-            CustomRouteLayer = MQ.Routing.RouteLayer.extend({
-                createStopMarker: function (location, stopNumber) {
-
+        
+        CustomRouteLayer = MQ.Routing.RouteLayer.extend({
+            createStopMarker: function (location, stopNumber) {
+                   
                     var marker;
 
-
-                    if (stopNumber == 1) {
-                        marker = L.marker(location.latLng, { draggable: true, icon: manIcon })
-                            .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
-                            .openPopup()
-                            .addTo(map);
-                    }
-                    else if (stopNumber == 2) {
-                        marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
-                            .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
-                            .openPopup()
-                            .addTo(map);
-                        map.removeLayer(markerPlecare);
-                    }
-
-                    return marker;
-
+              
+                if (stopNumber == 1) {
+                    marker = L.marker(location.latLng, { draggable: true, icon: manIcon })
+                        .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
+                        .openPopup()
+                        .addTo(map);
                 }
-            });
-
-            if (firstClick == true && secondClick == true) {
-                var dir;
-                $(document).ready(function (e) {
-                    dir = MQ.routing.directions();
-
-                    dir.route({
-                        locations: [{
-                            latLng: {
-                                lat: latStart,
-                                lng: lngStart
-                            }
-                        }, {
-                            latLng: {
-                                lat: latStop,
-                                lng: lngStop
-                            }
-                        }
-                        ]
-                    });
-
-                    map.addLayer(new CustomRouteLayer({
-                        directions: dir,
-                        fitBounds: true,
-                        draggable: true,
-                        ribbonOptions: {
-                            draggable: false,
-                            ribbonDisplay: { color: 'red', opacity: 0.3 },
-                            widths: [15, 15, 15, 15, 14, 13, 12, 12, 12, 11, 11, 11, 11, 12, 13, 14, 15]
-                        }
-                    }));
-                });
+                    else if (stopNumber == 2) {
+                    marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
+                        .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
+                        .openPopup()
+                        .addTo(map);
+                    map.removeLayer(markerPlecare);
+                }
+                    
+                return marker;
+              
             }
+        });
+
+        if (firstClick == true && secondClick == true) {
+            var dir;
+            $(document).ready(function (e) {
+                dir = MQ.routing.directions();
+
+                dir.route({
+                    locations: [{
+                        latLng: {
+                            lat: latStart,
+                            lng: lngStart
+                        }
+                    }, {
+                        latLng: {
+                            lat: latStop,
+                            lng: lngStop
+                        }
+                    }
+                    ]
+                });
+
+                map.addLayer(new CustomRouteLayer({
+                    directions: dir,
+                    fitBounds: true,
+                    draggable: true,
+                    ribbonOptions: {
+                        draggable: false,
+                        ribbonDisplay: { color: 'red', opacity: 0.3 },
+                        widths: [15, 15, 15, 15, 14, 13, 12, 12, 12, 11, 11, 11, 11, 12, 13, 14, 15]
+                    }
+                }));
+            });
         }
+    }
 
         map.on('click', onClick);
 
@@ -194,10 +194,9 @@
             })
                 .done(function (tracks) {
                     var cityTable = makeTable($('#tableSearch'), tracks);
-                });
+            });
         });
-    });
-
+            });
     function makeTable(container, data) {
         var content = "<div><ul>";
         $.each(data, function (rowIndex, track) {
@@ -207,14 +206,10 @@
             row= row + "<button class=\"btn btn-small\">Select</button>";
             row = row + '</li>'
             content = content + row;
-        });
+    });
 
         content = content + '</ul></div>';
         return container.append(content);
-
+       
     }
-
-
-
-
 </script>

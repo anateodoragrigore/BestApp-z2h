@@ -35,6 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin">
       <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -91,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CheckDistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -101,6 +109,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BestApp.Entities\BestApp.Entities.csproj">
+      <Project>{4bffeed4-d950-4356-bf53-4152a28a02a7}</Project>
+      <Name>BestApp.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BestApp.Models\BestApp.Models.csproj">
+      <Project>{5825bba4-2181-4296-81b2-2c95c3b8b509}</Project>
+      <Name>BestApp.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BestApp\BestApp.csproj">
       <Project>{F8A0177C-7699-4150-9AA4-FABC11E8F64D}</Project>
       <Name>BestApp</Name>
