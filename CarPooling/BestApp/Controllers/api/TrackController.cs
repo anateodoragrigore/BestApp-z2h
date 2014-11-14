@@ -20,8 +20,10 @@ namespace BestApp.Controllers
             {
                 var intervalStart = model.StartHour.Add(TimeSpan.FromMinutes(-maxDelayInMinutes));
                 var intervalStop = model.StartHour.Add(TimeSpan.FromMinutes(maxDelayInMinutes));
-
-                return context.TrackSet.Where(track => intervalStart < track.StartHour && track.StartHour < intervalStop).ToList();
+                var tracks = context.TrackSet
+                    .Include("UserOwner")
+                    .Where(track => intervalStart < track.StartHour && track.StartHour < intervalStop).ToList();
+                return tracks;
             }
         }
 
