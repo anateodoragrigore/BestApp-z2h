@@ -134,12 +134,11 @@
                     marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
                         .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                         .openPopup()
-                        .addTo(map);
-                    map.removeLayer(markerPlecare);
+                        .addTo(map);  
                 }
                     
                 return marker
-                map.removeLayer;
+              
             }
         });
 

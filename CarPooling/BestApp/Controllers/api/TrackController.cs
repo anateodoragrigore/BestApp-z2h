@@ -12,15 +12,12 @@ namespace BestApp.Controllers
 {
     public class TrackController : ApiController
     {
-        
-        public IEnumerable<Track> GetTracks([FromBody]SearchRouteModel model)
+        public IEnumerable<Track> GetTracks([FromUri]SearchRouteModel model)
         {
-            using (var context= new BestAppContext())
+            using (var context = new BestAppContext())
             {
-                return context.TrackSet.ToList();
-
+                return context.TrackSet.Where(track => true).ToList();
             }
-
         }
 
         public void Post(int id)
@@ -33,8 +30,8 @@ namespace BestApp.Controllers
                 {
                     User = currentuser,
                     Track = track
-
                 };
+
                 context.UserTrackSet.Add(userTrack);
                 context.SaveChanges();
 
@@ -42,3 +39,4 @@ namespace BestApp.Controllers
         }
     }
 }
+
