@@ -27,18 +27,16 @@ namespace BestApp.Controllers
                 var stopPoint = DbGeography.PointFromText(string.Format("POINT({0} {1})",
                                         model.StopLatitude, model.StopLongitude), 4326);
 
-                return context.TrackSet.Where(
-
+                return context.TrackSet
+                    .Include("UserOwner")
+                    .Where(
                     track => intervalStart < track.StartHour && 
                     track.StartHour < intervalStop &&
                     track.Start.Distance(startPoint) <= maxDistanceInMetres &&
                     track.Stop.Distance(stopPoint) <= maxDistanceInMetres
-
+                    
                     ).ToList();
-                var tracks = context.TrackSet
-                    .Include("UserOwner")
-                    .Where(track => intervalStart < track.StartHour && track.StartHour < intervalStop).ToList();
-                return tracks;
+               
             }
         }
 
