@@ -25,7 +25,7 @@ namespace BestApp.Controllers
         {
           
             //validare
-            if (User.Identity.IsAuthenticated)//if!User.Ide.isAuth..
+            if (!User.Identity.IsAuthenticated)//if!User.Ide.isAuth..
             {
                 return RedirectToAction("Login", "Account");
             }

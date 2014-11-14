@@ -12,38 +12,13 @@ namespace BestApp.Controllers
 {
     public class TrackController : ApiController
     {
-
-        public IEnumerable<Track> GetTracks(TimeSpan startHour, double startLatitude, double startLongitude, double stopLatitude, double stopLongitude)
-        {
-            List<Track> final_tracks = null;
-
-            using (var context = new BestAppContext())
-            {
-                foreach (var track in context.TrackSet.ToList())
-                {
-                    if (track.StartHour == startHour)
-                        final_tracks.Add(track);
-                }
-
-                return final_tracks;
-
-            }
-
-        }
-
         public IEnumerable<Track> GetTracks([FromUri]SearchRouteModel model)
         {
             using (var context = new BestAppContext())
             {
-                return context.TrackSet.Where(track => Matches(track, model)).ToList();
+                return context.TrackSet.Where(track => true).ToList();
             }
         }
-
-        private bool Matches(Track track, SearchRouteModel model)
-        {
-            return true;
-        }
-
 
         public void Post(int id)
         {
