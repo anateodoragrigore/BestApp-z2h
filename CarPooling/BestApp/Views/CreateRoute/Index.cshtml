@@ -1,4 +1,4 @@
-﻿@model BestApp.Models.CreateRouteModel
+﻿﻿@model BestApp.Models.CreateRouteModel
 
 @{
     ViewBag.Title = "Create Route";
@@ -79,6 +79,7 @@
 
     var carIcon = L.icon({
         iconUrl: 'Content/images/sedan.png',
+
         iconSize: [30, 38],
         iconAnchor: [22, 30],
         popupAnchor: [-3, -90]
@@ -86,16 +87,19 @@
 
     var bIcon = L.icon({
         iconUrl: 'Content/images/buildings10.png',
+
         iconSize: [30, 38],
         iconAnchor: [22, 30],
         popupAnchor: [-3, -90]
     });
-
     var emptyIcon = L.icon({
         iconUrl: 'Content/images/empty.jpg',
+
         iconSize: [0, 0],
         iconAnchor: [0, 0]
     });
+
+
 
     $(document).ready(function () {
 
@@ -104,8 +108,8 @@
         var onDragendPlecare = function (e) {
             $('#StartLatitude').val(markerPlecare._latlng.lat);
             $('#StartLongitude').val(markerPlecare._latlng.lng);
-        }
 
+        }
         var onDragendSosire = function (e) {
             $('#StopLatitude').val(markerSosire._latlng.lat);
             $('#StopLongitude').val(markerSosire._latlng.lng);
@@ -121,6 +125,7 @@
                 $('#StartLongitude').val(e.latlng.lng);
                 latStart = e.latlng.lat;
                 lngStart = e.latlng.lng;
+
             }
             else if (!secondClick) {
                 markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon });
@@ -131,7 +136,9 @@
                 $('#StopLongitude').val(e.latlng.lng);
                 latStop = e.latlng.lat;
                 lngStop = e.latlng.lng;
+
             }
+
 
             CustomRouteLayer = MQ.Routing.RouteLayer.extend({
                 createStopMarker: function (location, stopNumber) {
@@ -143,6 +150,7 @@
                             .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                             .openPopup()
                            .addTo(map);
+
                     }
                     else if (stopNumber == 2) {
                         marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
@@ -151,17 +159,18 @@
                             .addTo(map)
                         map.removeLayer(markerPlecare);
                     }
+
                     return marker;
                 }
+
 
             });
 
             if (firstClick == true && secondClick == true) {
-
                 var dir;
-
                 $(document).ready(function (e) {
                     dir = MQ.routing.directions();
+
                     dir.route({
                         locations: [{
                             latLng: {
@@ -176,6 +185,7 @@
                         }
                         ]
                     });
+
 
                     map.addLayer(new CustomRouteLayer({
                         directions: dir,
@@ -193,5 +203,10 @@
 
         map.on('click', onClick);
 
+
+
     });
+
+
+
 </script>
