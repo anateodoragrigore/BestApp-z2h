@@ -20,7 +20,7 @@
             @Html.TextBoxFor(Model => Model.StopLatitude, new { @class = "super-hidden" })
             @Html.TextBoxFor(Model => Model.StopLongitude, new { @class = "super-hidden" })
 
-
+          <div id="hideDivSearch"> 
             <div class="row" style="margin-top:50px">
                 <div class="col-md-6">
                     @Html.LabelFor(Model => Model.StartHour)
@@ -30,15 +30,18 @@
                 </div>
             </div>
 
-            <div class="row" style="margin-top:50px">
+            <div class="row" id="divButton" style="margin-top:50px">
                 <div class="col-md-6">
-                    <input type="button" id="search_button" value="Search Route!" disabled/>
+                    <input type="button" id="search_button" value="Search Route!"  onclick="$('#hideDivSearch').hide();"/>
                 </div>
+            </div>
             </div>
             @Html.ValidationSummary(){ }
         }
 
     </div>
+    <div id="tableSearch" class="col-md-4" style="margin-top:50px">
+</div>
 </div>
 
 <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")" type="text/javascript"></script>
@@ -138,7 +141,7 @@
                     map.removeLayer(markerPlecare);
                 }
                     
-                return marker
+                return marker;
               
             }
         });
@@ -189,10 +192,31 @@
                 StartLongitude: $('#StartLongitude').val(), StopLatitude: $('#StopLatitude').val(),
                 StopLongitude: $('#StopLongitude').val()})
                 .done(function (tracks) {
-                    console.log(tracks);
+                    var data = [["City 1", "City 2", "City 3"], //headers
+                   ["New York", "LA", "Seattle"],
+                   ["Paris", "Milan", "Rome"],
+                   ["Pittsburg", "Wichita", "Boise"]]
+                    var cityTable = makeTable($('#tableSearch'), tracks);
+                   
+                   
             });
         });
+            });
+
+    function makeTable(container, data) {
+        var table = $("<table/>").addClass('CSSTableGenerator');
+        $.each(data, function (rowIndex, r) {
+            var row = $("<tr/>");
+            $.each(r, function (colIndex, c) {
+                row.append($("<t" + (rowIndex == 0 ? "h" : "d") + "/>").text(c));
+        });
+            table.append(row);
     });
+        return container.append(table);
+       
+    }
+
+   
     
 
 </script>
