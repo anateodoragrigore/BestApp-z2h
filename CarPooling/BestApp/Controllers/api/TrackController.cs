@@ -14,9 +14,14 @@ namespace BestApp.Controllers
     {
         public IEnumerable<Track> GetTracks([FromUri]SearchRouteModel model)
         {
+            double maxDelayInMinutes=30; 
+
             using (var context = new BestAppContext())
             {
-                return context.TrackSet.Where(track => true).ToList();
+                var intervalStart = model.StartHour.Add(TimeSpan.FromMinutes(-maxDelayInMinutes));
+                var intervalStop = model.StartHour.Add(TimeSpan.FromMinutes(maxDelayInMinutes));
+
+                return context.TrackSet.Where(track => intervalStart < track.StartHour && track.StartHour < intervalStop).ToList();
             }
         }
 

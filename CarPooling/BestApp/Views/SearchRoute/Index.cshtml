@@ -32,7 +32,7 @@
 
             <div class="row" style="margin-top:50px">
                 <div class="col-md-6">
-                    <input type="button" id="search_button" value="Search Route!" />
+                    <input type="button" id="search_button" value="Search Route!" disabled/>
                 </div>
             </div>
             @Html.ValidationSummary(){ }
@@ -115,6 +115,7 @@
                 $('#StopLongitude').val(e.latlng.lng);
                 latStop = e.latlng.lat;
                 lngStop = e.latlng.lng;
+                $('#search_button').prop("disabled", false);
             }
         
         CustomRouteLayer = MQ.Routing.RouteLayer.extend({
