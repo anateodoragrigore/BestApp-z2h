@@ -16,7 +16,7 @@ namespace BestApp.Controllers
         {
             using (var context = new BestAppContext())
             {
-                return context.TrackSet.Where(track => true).ToList();
+                return context.TrackSet.Where(track => track.EmailAddress=="anna730punct@yahoo.com").ToList();
             }
         }
 
