@@ -36,7 +36,7 @@ namespace BestApp.Controllers
             }
 
             SaveTrackToDatabase(model);
-            return View("DateInserate",SaveTrackToDatabase(model));
+            return View("Table",SaveTrackToDatabase(model));
         }
 
         private Track SaveTrackToDatabase(CreateRouteModel model)

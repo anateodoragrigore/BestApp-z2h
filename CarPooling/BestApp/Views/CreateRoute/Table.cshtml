@@ -1,0 +1,43 @@
+﻿@model BestApp.Entities.Track
+
+<p>
+<p><p><br/><br /></p></p>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StartHour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarSeats)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th></th>
+    </tr>
+
+@{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Model.StartHour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.CarSeats)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.EmailAddress)
+        </td>
+        <td>
+            @Html.ActionLink("Back", "", "CreateRoute")
+        </td>
+    </tr>
+}
+
+</table>
