@@ -23,7 +23,7 @@ namespace BestApp.Controllers
         [HttpPost]
         public ActionResult Index(CreateRouteModel model)
         {
-          
+
             //validare
             if (!User.Identity.IsAuthenticated)//if!User.Ide.isAuth..
             {
@@ -34,14 +34,12 @@ namespace BestApp.Controllers
             {
                 return View();
             }
-            else
-            {
-                SaveTrackToDatabase(model);
-            }
-            return View();
+
+            SaveTrackToDatabase(model);
+            return View("DateInserate",SaveTrackToDatabase(model));
         }
 
-        private void SaveTrackToDatabase(CreateRouteModel model)
+        private Track SaveTrackToDatabase(CreateRouteModel model)
         {
             using (var context = new BestAppContext())
             {
@@ -68,6 +66,8 @@ namespace BestApp.Controllers
 
                 context.TrackSet.Add(newtrack);
                 context.SaveChanges();
+
+                return newtrack;
             }
         }
     }

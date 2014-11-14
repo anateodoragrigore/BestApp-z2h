@@ -273,6 +273,7 @@
     <Content Include="Views\SearchRoute\Index.cshtml" />
     <Content Include="Views\Shared\DefaultMap.cshtml" />
     <Content Include="Views\Home\MyTracks.cshtml" />
+    <Content Include="Views\CreateRoute\DateInserate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
