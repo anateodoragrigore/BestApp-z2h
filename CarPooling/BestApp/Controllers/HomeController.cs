@@ -43,7 +43,7 @@ namespace BestApp.Controllers
             //var myTracks = db.UserTrackSet.Include(t => t.User).Include(t => t.Track).
             //    Where(p => p.User.Name == User.Identity.Name).Select(t=>t.Track);
 
-            //return View(myTracks);
+            return View(myTracks);
             
         }
     }
