@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201411140959206_Set Name lenght.Designer.cs">
       <DependentUpon>201411140959206_Set Name lenght.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201411141003468_Add unique constraint for Name.cs" />
+    <Compile Include="Migrations\201411141003468_Add unique constraint for Name.Designer.cs">
+      <DependentUpon>201411141003468_Add unique constraint for Name.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201411140959206_Set Name lenght.resx">
       <DependentUpon>201411140959206_Set Name lenght.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411141003468_Add unique constraint for Name.resx">
+      <DependentUpon>201411141003468_Add unique constraint for Name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
