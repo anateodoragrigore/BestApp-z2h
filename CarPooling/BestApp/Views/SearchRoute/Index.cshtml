@@ -34,14 +34,14 @@
                 <div class="col-md-6">
                     <input type="button" id="search_button" value="Search Route!"  onclick="$('#hideDivSearch').hide();"/>
                 </div>
-                </div>
+            </div>
             </div>
             @Html.ValidationSummary(){ }
         }
 
     </div>
     <div id="tableSearch" class="col-md-4" style="margin-top:50px">
-    </div>
+</div>
 </div>
 
 <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")" type="text/javascript"></script>
@@ -118,6 +118,7 @@
                 $('#StopLongitude').val(e.latlng.lng);
                 latStop = e.latlng.lat;
                 lngStop = e.latlng.lng;
+                $('#search_button').prop("disabled", false);
             }
         
         CustomRouteLayer = MQ.Routing.RouteLayer.extend({
@@ -200,7 +201,7 @@
                    
             });
         });
-    });
+            });
 
     function makeTable(container, data) {
         var table = $("<table/>").addClass('CSSTableGenerator');
@@ -208,9 +209,9 @@
             var row = $("<tr/>");
             $.each(r, function (colIndex, c) {
                 row.append($("<t" + (rowIndex == 0 ? "h" : "d") + "/>").text(c));
-            });
-            table.append(row);
         });
+            table.append(row);
+    });
         return container.append(table);
        
     }
