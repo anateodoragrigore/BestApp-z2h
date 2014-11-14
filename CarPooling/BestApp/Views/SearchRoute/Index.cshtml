@@ -32,7 +32,7 @@
 
             <div class="row" style="margin-top:50px">
                 <div class="col-md-6">
-                    <input type="button" id="search_button" value="Search Route!" />
+                    <input type="button" id="search_button" value="Search Route!" disabled/>
                 </div>
             </div>
             @Html.ValidationSummary(){ }
@@ -96,7 +96,7 @@
 
         var onClick = function (e) {
             if (!firstClick) {
-                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon });
+                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: manIcon });
                 markerPlecare.addTo(map).bindPopup("Punct plecare");
                 markerPlecare.on('dragend', onDragendPlecare);
                 firstClick = true;
@@ -115,13 +115,13 @@
                 $('#StopLongitude').val(e.latlng.lng);
                 latStop = e.latlng.lat;
                 lngStop = e.latlng.lng;
+                $('#search_button').prop("disabled", false);
             }
         
         CustomRouteLayer = MQ.Routing.RouteLayer.extend({
             createStopMarker: function (location, stopNumber) {
                    
-                    var
-                        marker;
+                    var   marker;
 
               
                 if (stopNumber == 1) {
@@ -134,7 +134,8 @@
                     marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
                         .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                         .openPopup()
-                        .addTo(map);  
+                        .addTo(map);
+                    map.removeLayer(markerPlecare);
                 }
                     
                 return marker
@@ -168,7 +169,7 @@
                     draggable: true,
                     ribbonOptions: {
                         draggable: false,
-                        ribbonDisplay: { color: '#39008F', opacity: 0.3 },
+                        ribbonDisplay: { color: 'red', opacity: 0.3 },
                         widths: [15, 15, 15, 15, 14, 13, 12, 12, 12, 11, 11, 11, 11, 12, 13, 14, 15]
                     }
                 }));
