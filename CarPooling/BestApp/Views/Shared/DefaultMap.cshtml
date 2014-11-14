@@ -1,18 +1,8 @@
-﻿
-<div id="map" style="height: 450px;"></div>
+﻿<div id="map" style="height: 450px;"></div>
 
 <script>
     $(document).ready(function () {
-        
-
-        map = L.map('map', {
-            layers: MQ.mapLayer(),
-            center: [40.732672, -74.271125],
-            zoom: 11,
-            attributionControl: true
-           
-        });
-        map.setView([44.5, 26], 10);
+        map = L.map('map').setView([44.5, 26], 10);
         var layer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
         layer.addTo(map);
     });

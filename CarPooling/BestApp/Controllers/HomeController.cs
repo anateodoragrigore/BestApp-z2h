@@ -27,5 +27,12 @@ namespace BestApp.Controllers
 
             return View();
         }
+
+        public ActionResult MyTracks()
+        {
+            ViewBag.Message = "Your Tracks.";
+
+            return View();
+        }
     }
 }
