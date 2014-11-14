@@ -79,27 +79,23 @@
 
     var carIcon = L.icon({
         iconUrl: 'Content/images/sedan.png',
-
-        iconSize: [30, 38], 
+        iconSize: [30, 38],
         iconAnchor: [22, 30],
         popupAnchor: [-3, -90]
     });
 
     var bIcon = L.icon({
         iconUrl: 'Content/images/buildings10.png',
-
         iconSize: [30, 38],
-        iconAnchor: [22, 30], 
-        popupAnchor: [-3, -90] 
+        iconAnchor: [22, 30],
+        popupAnchor: [-3, -90]
     });
+
     var emptyIcon = L.icon({
         iconUrl: 'Content/images/empty.jpg',
-
         iconSize: [0, 0],
         iconAnchor: [0, 0]
     });
-
-
 
     $(document).ready(function () {
 
@@ -108,8 +104,8 @@
         var onDragendPlecare = function (e) {
             $('#StartLatitude').val(markerPlecare._latlng.lat);
             $('#StartLongitude').val(markerPlecare._latlng.lng);
-
         }
+
         var onDragendSosire = function (e) {
             $('#StopLatitude').val(markerSosire._latlng.lat);
             $('#StopLongitude').val(markerSosire._latlng.lng);
@@ -117,18 +113,17 @@
 
         var onClick = function (e) {
             if (!firstClick) {
-                 markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: carIcon });
-                    markerPlecare.addTo(map).bindPopup("Punct plecare");
-                    markerPlecare.on('dragend', onDragendPlecare);
-                    firstClick = true;
+                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: carIcon });
+                markerPlecare.addTo(map).bindPopup("Punct plecare");
+                markerPlecare.on('dragend', onDragendPlecare);
+                firstClick = true;
                 $('#StartLatitude').val(e.latlng.lat);
                 $('#StartLongitude').val(e.latlng.lng);
                 latStart = e.latlng.lat;
                 lngStart = e.latlng.lng;
-                
             }
             else if (!secondClick) {
-                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon});
+                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon });
                 markerSosire.addTo(map).bindPopup("Punct sosire");
                 markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
@@ -136,41 +131,37 @@
                 $('#StopLongitude').val(e.latlng.lng);
                 latStop = e.latlng.lat;
                 lngStop = e.latlng.lng;
-              
             }
-            
 
             CustomRouteLayer = MQ.Routing.RouteLayer.extend({
                 createStopMarker: function (location, stopNumber) {
-                   
-                    var  marker;
+
+                    var marker;
 
                     if (stopNumber == 1) {
                         marker = L.marker(location.latLng, { draggable: true, icon: carIcon })
                             .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                             .openPopup()
                            .addTo(map);
-                        
                     }
-                    else if (stopNumber==2)  {
+                    else if (stopNumber == 2) {
                         marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
                             .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                             .openPopup()
                             .addTo(map)
                         map.removeLayer(markerPlecare);
                     }
-                    
                     return marker;
                 }
-            
-                
+
             });
 
             if (firstClick == true && secondClick == true) {
+
                 var dir;
+
                 $(document).ready(function (e) {
                     dir = MQ.routing.directions();
-
                     dir.route({
                         locations: [{
                             latLng: {
@@ -185,7 +176,6 @@
                         }
                         ]
                     });
-
 
                     map.addLayer(new CustomRouteLayer({
                         directions: dir,
@@ -202,11 +192,6 @@
         }
 
         map.on('click', onClick);
-       
-
 
     });
-
-
-
 </script>

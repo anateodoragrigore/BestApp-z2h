@@ -23,17 +23,15 @@ namespace BestApp.Controllers
         [HttpPost]
         public ActionResult Index(CreateRouteModel model)
         {
+          
             //validare
-            if (!User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)//if!User.Ide.isAuth..
             {
                 return RedirectToAction("Login", "Account");
             }
 
             if (!ModelState.IsValid)
             {
-                Console.WriteLine(model.StartLatitude);
-                Console.WriteLine(model.StopLatitude);
-
                 return View();
             }
             else

@@ -37,7 +37,6 @@ namespace BestApp.Controllers
             {
                 return context.TrackSet.Where(track => Matches(track, model)).ToList();
             }
-
         }
 
         private bool Matches(Track track, SearchRouteModel model)
@@ -56,8 +55,8 @@ namespace BestApp.Controllers
                 {
                     User = currentuser,
                     Track = track
-
                 };
+
                 context.UserTrackSet.Add(userTrack);
                 context.SaveChanges();
 
