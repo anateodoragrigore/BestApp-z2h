@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BestApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,11 +29,14 @@ namespace BestApp.Controllers
             return View();
         }
 
+        private BestAppContext db = new BestAppContext();
+
+        // GET: Tracks
         public ActionResult MyTracks()
         {
-            ViewBag.Message = "Your Tracks.";
-
-            return View();
+            return View(db.TrackSet.ToList());
         }
+
+        
     }
 }

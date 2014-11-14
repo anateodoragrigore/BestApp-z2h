@@ -25,7 +25,6 @@ namespace BestApp.Models
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Add(new ForeignKeyNamingConvention());
-            modelBuilder.Configurations.Add(new UserTrackConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 

@@ -6,7 +6,7 @@
 
 <h2>Search Route</h2>
 
-<div class="row" style="margin-top:50px">
+    <div class="row" >
     <div class="col-md-8">
         @Html.Partial("~/Views/Shared/DefaultMap.cshtml")
     </div>
@@ -32,7 +32,7 @@
 
             <div class="row" id="divButton" style="margin-top:50px">
                 <div class="col-md-6">
-                    <input type="button" id="search_button" value="Search Route!"  onclick="$('#hideDivSearch').hide();"/>
+                            <input type="button" id="search_button" value="Search Route!" onclick="$('#hideDivSearch').hide();" />
                 </div>
             </div>
             </div>
@@ -110,7 +110,7 @@
 
             }
             else if (!secondClick) {
-                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon});
+                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon });
                 markerSosire.addTo(map).bindPopup("Punct sosire");
                 markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
@@ -124,7 +124,7 @@
         CustomRouteLayer = MQ.Routing.RouteLayer.extend({
             createStopMarker: function (location, stopNumber) {
                    
-                    var   marker;
+                    var marker;
 
               
                 if (stopNumber == 1) {
@@ -133,7 +133,7 @@
                         .openPopup()
                         .addTo(map);
                 }
-                    else if (stopNumber==2)  {
+                    else if (stopNumber == 2) {
                     marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
                         .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                         .openPopup()
@@ -190,24 +190,26 @@
             $.get("/api/Track", {
                 StartHour: $('#StartHour').val(), StartLatitude: $('#StartLatitude').val(),
                 StartLongitude: $('#StartLongitude').val(), StopLatitude: $('#StopLatitude').val(),
-                StopLongitude: $('#StopLongitude').val()})
+                StopLongitude: $('#StopLongitude').val()
+            })
                 .done(function (tracks) {
                     var cityTable = makeTable($('#tableSearch'), tracks);
             });
         });
             });
     function makeTable(container, data) {
-        var table = $("<table/>").addClass('CSSTableGenerator');
-        $.each(data, function (rowIndex, r) {
-            var row = $("<tr/>");
-            $.each(r, function (colIndex, c) {
-                row.append($("<t" + (rowIndex == 0 ? "h" : "d") + "/>").text(c));
-        });
-            table.append(row);
+        var content = "<div><ul>";
+        $.each(data, function (rowIndex, track) {
+            var row = "<li>";
+
+            row= row + track.StartHour +' '+track.PhoneNumber+' '+track.UserOwner.Name ;
+            row= row + "<button class=\"btn btn-small\">Select</button>";
+            row = row + '</li>'
+            content = content + row;
     });
-        return container.append(table);
+
+        content = content + '</ul></div>';
+        return container.append(content);
        
     }
 </script>
-
-
