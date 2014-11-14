@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace BestApp.Controllers
 {
@@ -34,9 +35,16 @@ namespace BestApp.Controllers
         // GET: Tracks
         public ActionResult MyTracks()
         {
-            return View(db.TrackSet.ToList());
-        }
+            var myTracks = db.TrackSet.Where
+                (
+                  track => track.UserOwner.Name == User.Identity.Name
+                ).ToList();
 
-        
+            //var myTracks = db.UserTrackSet.Include(t => t.User).Include(t => t.Track).
+            //    Where(p => p.User.Name == User.Identity.Name).Select(t=>t.Track);
+
+            return View(myTracks);
+            
+        }
     }
 }
