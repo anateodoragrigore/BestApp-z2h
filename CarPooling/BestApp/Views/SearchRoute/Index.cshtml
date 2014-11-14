@@ -192,17 +192,10 @@
                 StartLongitude: $('#StartLongitude').val(), StopLatitude: $('#StopLatitude').val(),
                 StopLongitude: $('#StopLongitude').val()})
                 .done(function (tracks) {
-                    var data = [["City 1", "City 2", "City 3"], //headers
-                   ["New York", "LA", "Seattle"],
-                   ["Paris", "Milan", "Rome"],
-                   ["Pittsburg", "Wichita", "Boise"]]
                     var cityTable = makeTable($('#tableSearch'), tracks);
-                   
-                   
             });
         });
             });
-
     function makeTable(container, data) {
         var table = $("<table/>").addClass('CSSTableGenerator');
         $.each(data, function (rowIndex, r) {
@@ -215,10 +208,6 @@
         return container.append(table);
        
     }
-
-   
-    
-
 </script>
 
 
