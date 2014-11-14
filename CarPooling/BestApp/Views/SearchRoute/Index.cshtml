@@ -135,9 +135,11 @@
                         .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                         .openPopup()
                         .addTo(map);
+                    map.removeLayer(markerPlecare);
                 }
                     
-                return marker;
+                return marker
+                map.removeLayer;
             }
         });
 
