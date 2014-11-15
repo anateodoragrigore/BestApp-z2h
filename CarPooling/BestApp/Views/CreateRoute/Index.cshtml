@@ -70,6 +70,10 @@
 <script src="//www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=Fmjtd%7Cluurn9ua2h%2C8w%3Do5-9wzlhy"></script>
 <script src="//www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=Fmjtd%7Cluurn9ua2h%2C8w%3Do5-9wzlhy"></script>
 <script type="text/javascript">
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        maxZoom: 18
+    }).addTo(map);
 
 
     var firstClick = false;
@@ -138,6 +142,9 @@
                 lngStop = e.latlng.lng;
               
             }
+
+
+          
             
 
             CustomRouteLayer = MQ.Routing.RouteLayer.extend({
@@ -200,7 +207,7 @@
                 });
             }
         }
-
+        map.on('locationfound', onLocationFound);
         map.on('click', onClick);
        
 
