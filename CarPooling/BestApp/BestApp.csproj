@@ -181,6 +181,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CreateRouteModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -212,10 +213,12 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\images\buildings10.png" />
+    <Content Include="Scripts\images\heatmap.js" />
     <Content Include="Scripts\images\home148.png" />
     <Content Include="Scripts\images\house4.png" />
     <Content Include="Scripts\images\layers-2x.png" />
     <Content Include="Scripts\images\layers.png" />
+    <Content Include="Scripts\images\leaflet-heatmap.js" />
     <Content Include="Scripts\images\marker-icon-2x.png" />
     <Content Include="Scripts\images\marker-icon.png" />
     <Content Include="Scripts\images\marker-shadow.png" />
@@ -272,6 +275,8 @@
     <Content Include="Views\CreateRoute\Index.cshtml" />
     <Content Include="Views\SearchRoute\Index.cshtml" />
     <Content Include="Views\Shared\DefaultMap.cshtml" />
+    <Content Include="Views\Home\MyTracks.cshtml" />
+    <Content Include="Views\CreateRoute\Table.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

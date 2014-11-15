@@ -12,39 +12,33 @@ namespace BestApp.Controllers
 {
     public class TrackController : ApiController
     {
-
-        public IEnumerable<Track> GetTracks(TimeSpan startHour, double startLatitude, double startLongitude, double stopLatitude, double stopLongitude)
-        {
-            List<Track> final_tracks = null;
-
-            using (var context = new BestAppContext())
-            {
-                foreach (var track in context.TrackSet.ToList())
-                {
-                    if (track.StartHour == startHour)
-                        final_tracks.Add(track);
-                }
-
-                return final_tracks;
-
-            }
-
-        }
-
         public IEnumerable<Track> GetTracks([FromUri]SearchRouteModel model)
         {
+            double maxDelayInMinutes = 30;
+            double maxDistanceInMetres = 2000;
+
             using (var context = new BestAppContext())
             {
-                return context.TrackSet.Where(track => Matches(track, model)).ToList();
+                var intervalStart = model.StartHour.Add(TimeSpan.FromMinutes(-maxDelayInMinutes));
+                var intervalStop = model.StartHour.Add(TimeSpan.FromMinutes(maxDelayInMinutes));
+
+                var startPoint = DbGeography.PointFromText(string.Format("POINT({0} {1})", 
+                                        model.StartLatitude, model.StartLongitude), 4326);
+                var stopPoint = DbGeography.PointFromText(string.Format("POINT({0} {1})",
+                                        model.StopLatitude, model.StopLongitude), 4326);
+
+                return context.TrackSet
+                    .Include("UserOwner")
+                    .Where(
+                    track => intervalStart < track.StartHour && 
+                    track.StartHour < intervalStop &&
+                    track.Start.Distance(startPoint) <= maxDistanceInMetres &&
+                    track.Stop.Distance(stopPoint) <= maxDistanceInMetres
+                    
+                    ).ToList();
+               
             }
-
         }
-
-        private bool Matches(Track track, SearchRouteModel model)
-        {
-            return true;
-        }
-
 
         public void Post(int id)
         {
@@ -56,8 +50,8 @@ namespace BestApp.Controllers
                 {
                     User = currentuser,
                     Track = track
-
                 };
+
                 context.UserTrackSet.Add(userTrack);
                 context.SaveChanges();
 

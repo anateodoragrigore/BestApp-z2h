@@ -1,4 +1,4 @@
-﻿@model BestApp.Models.CreateRouteModel
+﻿﻿@model BestApp.Models.CreateRouteModel
 
 @{
     ViewBag.Title = "Create Route";
@@ -56,7 +56,7 @@
                 <div class="col-md-6">
                     @Html.EditorFor(Model => Model.FreeSeats)
                     <br /><br />
-                    <input type="submit" value="Create Route!" />
+                    <input type="submit" id="createRoute" value="Create Route!" />
                 </div>
             </div>
             @Html.ValidationSummary(){ }
@@ -64,6 +64,7 @@
 
     </div>
 </div>
+
 <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
@@ -84,7 +85,7 @@
     var carIcon = L.icon({
         iconUrl: 'Content/images/sedan.png',
 
-        iconSize: [30, 38], 
+        iconSize: [30, 38],
         iconAnchor: [22, 30],
         popupAnchor: [-3, -90]
     });
@@ -93,8 +94,8 @@
         iconUrl: 'Content/images/buildings10.png',
 
         iconSize: [30, 38],
-        iconAnchor: [22, 30], 
-        popupAnchor: [-3, -90] 
+        iconAnchor: [22, 30],
+        popupAnchor: [-3, -90]
     });
     var emptyIcon = L.icon({
         iconUrl: 'Content/images/empty.jpg',
@@ -121,18 +122,18 @@
 
         var onClick = function (e) {
             if (!firstClick) {
-                 markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: carIcon });
-                    markerPlecare.addTo(map).bindPopup("Punct plecare");
-                    markerPlecare.on('dragend', onDragendPlecare);
-                    firstClick = true;
+                markerPlecare = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: carIcon });
+                markerPlecare.addTo(map).bindPopup("Punct plecare");
+                markerPlecare.on('dragend', onDragendPlecare);
+                firstClick = true;
                 $('#StartLatitude').val(e.latlng.lat);
                 $('#StartLongitude').val(e.latlng.lng);
                 latStart = e.latlng.lat;
                 lngStart = e.latlng.lng;
-                
+
             }
             else if (!secondClick) {
-                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon});
+                markerSosire = L.marker([e.latlng.lat, e.latlng.lng], { draggable: true, icon: emptyIcon });
                 markerSosire.addTo(map).bindPopup("Punct sosire");
                 markerSosire.on('dragend', onDragendSosire);
                 secondClick = true;
@@ -140,37 +141,40 @@
                 $('#StopLongitude').val(e.latlng.lng);
                 latStop = e.latlng.lat;
                 lngStop = e.latlng.lng;
-              
+
             }
 
+<<<<<<< HEAD
 
           
             
+=======
+>>>>>>> 66b8f912250299375076a8882938abb44e7cbd41
 
             CustomRouteLayer = MQ.Routing.RouteLayer.extend({
                 createStopMarker: function (location, stopNumber) {
-                   
-                    var  marker;
+
+                    var marker;
 
                     if (stopNumber == 1) {
                         marker = L.marker(location.latLng, { draggable: true, icon: carIcon })
                             .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                             .openPopup()
                            .addTo(map);
-                        
+
                     }
-                    else if (stopNumber==2)  {
+                    else if (stopNumber == 2) {
                         marker = L.marker(location.latLng, { draggable: true, icon: bIcon })
                             .bindPopup(location.adminArea5 + ' ' + location.adminArea3)
                             .openPopup()
                             .addTo(map)
                         map.removeLayer(markerPlecare);
                     }
-                    
+
                     return marker;
                 }
-            
-                
+
+
             });
 
             if (firstClick == true && secondClick == true) {
@@ -209,11 +213,7 @@
         }
         map.on('locationfound', onLocationFound);
         map.on('click', onClick);
-       
-
 
     });
-
-
 
 </script>
