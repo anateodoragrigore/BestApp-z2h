@@ -276,6 +276,7 @@
     <Content Include="Views\Shared\DefaultMap.cshtml" />
     <Content Include="Views\Home\MyTracks.cshtml" />
     <Content Include="Views\CreateRoute\Table.cshtml" />
+    <Content Include="Views\SearchRoute\ShowTrackSelected.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
